@@ -19,16 +19,18 @@ export default function CheckoutPage() {
 
       {/* ── Szállítási űrlap & Összesítő terület ── */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Bal oldal: Űrlap */}
-          <div>
+          <div className="lg:col-span-7">
             <ShippingForm />
           </div>
 
           {/* Jobb oldal: Összesítő tábla (Sticky) */}
-          <div className="lg:sticky lg:top-24">
-            <CheckoutSummary />
+          <div className="lg:col-span-5">
+            <div className="sticky top-24">
+              <CheckoutSummary />
+            </div>
           </div>
           
         </div>

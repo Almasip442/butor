@@ -88,7 +88,7 @@ export function ShippingForm() {
             )}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <FormField
               control={form.control}
               name="email"
@@ -118,8 +118,8 @@ export function ShippingForm() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div className="md:col-span-1">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="sm:col-span-1">
               <FormField
                 control={form.control}
                 name="zip_code"
@@ -134,7 +134,7 @@ export function ShippingForm() {
                 )}
               />
             </div>
-            <div className="md:col-span-2">
+            <div className="sm:col-span-2">
               <FormField
                 control={form.control}
                 name="city"
