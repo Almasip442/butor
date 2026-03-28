@@ -6,7 +6,7 @@ export function HeroSection() {
   return (
     <section className="relative w-full bg-secondary/20 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center py-16 lg:py-24 min-h-[75vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center py-16 lg:py-24 min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh]">
           
           {/* Szöveges tartalom */}
           <div className="flex flex-col justify-center max-w-xl z-10 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out relative">
@@ -23,11 +23,11 @@ export function HeroSection() {
               Gondosan válogatott kollekcióink ötvözik a modern minimalizmust az organikus melegséggel. Fedezd fel otthonod új arcát kézműves bútorainkkal.
             </p>
             
-            <div className="flex flex-wrap items-center gap-4">
-              <Button asChild size="lg" className="h-14 px-8 text-sm tracking-wide font-bold uppercase touch-target shadow-lg shadow-primary/20">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-sm tracking-wide font-bold uppercase touch-target shadow-lg shadow-primary/20">
                 <Link href="/products">Termékek böngészése</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-14 px-8 text-sm tracking-wide font-bold uppercase border-border/80 bg-transparent hover:bg-background hover:text-primary touch-target">
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-sm tracking-wide font-bold uppercase border-border/80 bg-transparent hover:bg-background hover:text-primary touch-target">
                 <Link href="#">Rólunk</Link>
               </Button>
             </div>
