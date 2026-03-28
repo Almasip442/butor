@@ -97,26 +97,28 @@ export default async function ProductsPage({
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start relative">
           
-          {/* Asztali Sidebar / Mobil panel helye */}
-          <div className="w-full lg:w-64 shrink-0 flex items-center justify-between lg:block">
-            {/* Mobilon itt egy inline header jelenik meg a sheet gombbal */}
-            <div className="lg:hidden flex items-center gap-2 text-foreground font-semibold uppercase tracking-widest text-sm">
-               <Filter className="w-4 h-4" /> Szűrők
-            </div>
-
-            <ProductFilters />
-          </div>
+          {/* Asztali Sidebar */}
+          <aside className="hidden md:block w-64 flex-shrink-0">
+            <ProductFilters isDesktopOnly />
+          </aside>
           
           {/* Termék lista oldali konténer */}
           <div className="flex-1 w-full min-w-0 flex flex-col">
             
-            {/* Felső vezérlő sáv: Találatok száma + Rendezés Selector */}
+            {/* Felső vezérlő sáv: Találatok száma + Rendezés Selector + Mobil Szűrők */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-border/40">
-              <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+              <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest hidden sm:block">
                 <span className="text-foreground tracking-tight">{filteredProducts.length}</span> Termék található
               </p>
               
-              <SortSelector />
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <div className="flex-1 md:hidden">
+                  <ProductFilters isMobileOnly />
+                </div>
+                <div className="flex-1 sm:flex-none">
+                  <SortSelector />
+                </div>
+              </div>
             </div>
             
             <ProductGrid products={filteredProducts} />

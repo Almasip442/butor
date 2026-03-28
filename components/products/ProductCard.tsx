@@ -22,7 +22,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <Card className="group overflow-hidden rounded-2xl border-border/50 bg-background shadow-sm hover:shadow-xl transition-all duration-500 ease-out flex flex-col h-full">
       
       {/* Kép tartomány */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset" aria-label={`${product.name} részletek`}>
           <Image
             src={product.images[0]}
@@ -44,7 +44,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <CardContent className="flex flex-col flex-grow p-5 space-y-2">
         <div className="flex flex-col gap-1">
           <Link href={`/products/${product.slug}`} className="block focus-visible:outline-none focus-visible:underline rounded-sm">
-            <h3 className="font-display text-lg font-semibold text-foreground line-clamp-1 group-hover:text-primary transition-colors">
+            <h3 className="font-display text-sm sm:text-base font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
               {product.name}
             </h3>
           </Link>
@@ -60,22 +60,20 @@ export function ProductCard({ product }: ProductCardProps) {
           </p>
         )}
         
-        {/* Arányosan kitölti az üres helyet */}
+        {/* Arányosan kitölti az üres helyet az alsó szegés előtt */}
         <div className="flex-grow" />
 
-        <div className="pt-2 font-semibold text-lg tabular-nums text-foreground tracking-tight">
-          {formattedPrice}
+        <div className="flex items-center justify-between gap-2 mt-auto pt-4">
+          <span className="font-bold text-base sm:text-lg tabular-nums text-foreground tracking-tight">
+            {formattedPrice}
+          </span>
+          <AddToCartButton 
+            product={product} 
+            className="min-h-[44px]" 
+            variant="secondary"
+          />
         </div>
       </CardContent>
-
-      <CardFooter className="p-5 pt-0">
-        <AddToCartButton 
-          product={product} 
-          fullWidth 
-          variant="secondary"
-          className="opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-2 lg:group-hover:translate-y-0 transition-all duration-300" 
-        />
-      </CardFooter>
     </Card>
   )
 }

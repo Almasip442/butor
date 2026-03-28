@@ -25,12 +25,12 @@ export function SortSelector() {
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 w-full sm:w-auto">
       <label htmlFor="sort-selector" className="text-sm font-medium text-muted-foreground whitespace-nowrap hidden sm:inline-block">
         Rendezés:
       </label>
       <Select value={currentSort} onValueChange={handleSortChange}>
-        <SelectTrigger id="sort-selector" className="w-[160px] sm:w-[200px] h-10 border-border bg-background focus:ring-primary touch-target">
+        <SelectTrigger id="sort-selector" className="w-full sm:w-[200px] h-10 border-border bg-background focus:ring-primary touch-target">
           <SelectValue placeholder="Válassz rendezést" />
         </SelectTrigger>
         <SelectContent align="end">

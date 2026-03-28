@@ -27,7 +27,12 @@ import { useDebounce } from "@/hooks/use-debounce"
 
 const KNOWN_MATERIALS = ["Fa", "Szövet", "Bársony", "Üveg", "Fém", "Bőr", "MDF"]
 
-export function ProductFilters() {
+interface ProductFiltersProps {
+  isMobileOnly?: boolean
+  isDesktopOnly?: boolean
+}
+
+export function ProductFilters({ isMobileOnly, isDesktopOnly }: ProductFiltersProps = {}) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -145,7 +150,7 @@ export function ProductFilters() {
         <h3 className="text-sm font-semibold tracking-wide uppercase text-foreground">Anyagok</h3>
         <div className="grid grid-cols-1 gap-3">
           {KNOWN_MATERIALS.map((mat) => (
-            <div key={mat} className="flex items-center gap-2 group">
+            <div key={mat} className="flex items-center gap-2 group min-h-[44px]">
               <Checkbox
                 id={`mat-${mat}`}
                 checked={selectedMaterials.includes(mat)}
@@ -180,34 +185,38 @@ export function ProductFilters() {
   return (
     <>
       {/* Asztali nézet */}
-      <div className="hidden lg:block w-64 shrink-0">
-        <div className="sticky top-24 bg-background/50 rounded-2xl border border-border/50 p-6 shadow-sm">
-          <FilterContent />
+      {!isMobileOnly && (
+        <div className="hidden md:block w-full">
+          <div className="sticky top-24 bg-background/50 rounded-2xl border border-border/50 p-6 shadow-sm">
+            <FilterContent />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Mobil nézet (Sheet) */}
-      <div className="lg:hidden w-full flex items-center justify-end mb-4">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" className="gap-2 bg-background border-border">
-              <Filter className="h-4 w-4" />
-              Szűrők
-              {selectedMaterials.length > 0 && (
-                <span className="ml-1 inline-flex items-center justify-center bg-primary text-primary-foreground text-[10px] w-5 h-5 rounded-full font-bold">
-                  {selectedMaterials.length + (currentCategory !== "all" ? 1 : 0) + (priceRange[0] > 0 || priceRange[1] < 1000000 ? 1 : 0)}
-                </span>
-              )}
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[350px] p-6 pt-12 overflow-y-auto">
-            <SheetHeader className="mb-8 text-left">
-              <SheetTitle className="font-display text-2xl">Szűrés & Keresés</SheetTitle>
-            </SheetHeader>
-            <FilterContent />
-          </SheetContent>
-        </Sheet>
-      </div>
+      {!isDesktopOnly && (
+        <div className="w-full">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" className="gap-2 bg-background border-border w-full min-h-[44px]">
+                <Filter className="h-4 w-4" />
+                Szűrők
+                {selectedMaterials.length > 0 && (
+                  <span className="ml-1 inline-flex items-center justify-center bg-primary text-primary-foreground text-[10px] w-5 h-5 rounded-full font-bold">
+                    {selectedMaterials.length + (currentCategory !== "all" ? 1 : 0) + (priceRange[0] > 0 || priceRange[1] < 1000000 ? 1 : 0)}
+                  </span>
+                )}
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[350px] p-6 pt-12 overflow-y-auto">
+              <SheetHeader className="mb-8 text-left">
+                <SheetTitle className="font-display text-2xl">Szűrés & Keresés</SheetTitle>
+              </SheetHeader>
+              <FilterContent />
+            </SheetContent>
+          </Sheet>
+        </div>
+      )}
     </>
   )
 }
