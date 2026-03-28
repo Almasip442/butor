@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html class="light" lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;700&amp;family=Inter:wght@300;400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8B4513", // Chocolate Brown
+                        "accent": "#B87333", // Copper
+                        "neutral-dark": "#333333", // Dark Charcoal
+                        "background-light": "#F5F5F5", // White Smoke
+                        "background-dark": "#1A1412",
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "sans": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-neutral-dark dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full overflow-hidden">
+<!-- Asymmetrical Split Screen: Left Side (Image) -->
+<div class="hidden lg:block lg:w-7/12 relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Luxury modern living room with premium velvet furniture and warm lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsPQCvdjGhPFj9UG_ms1TJcBSdMPL-zAms8mDCDtWo6w7kjsk5BUwodNCDaIDpFeijidHpxF2tYLIh7joNWwrLrDc0sLCtM6ko60S97O8GMGGUvwV86NW13ku8CQNjnoIQqiPbKTkas6bHLj11UHxkleG02Lbx8iUAZipM6pNJ090JL9ZlF-OLvzTvsouyAKo5-WU_Hgeg5926yUuLZBZ8xZL5_Az4Caw0049HUgy85sp7YjW0WAV96TbNLIzxsDvIUeD_T0cePzg');">
+</div>
+<!-- Overlay for branding consistency -->
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+<!-- Subtle Floating Branding -->
+<div class="absolute top-12 left-12 flex items-center gap-3 text-white">
+<div class="size-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white">chair</span>
+</div>
+<h1 class="font-playfair text-2xl font-bold tracking-tight">FurnSpace</h1>
+</div>
+</div>
+<!-- Right Side: Form Area -->
+<div class="w-full lg:w-5/12 flex flex-col justify-center items-center px-8 md:px-16 lg:px-24 bg-background-light dark:bg-background-dark">
+<div class="w-full max-w-md">
+<!-- Mobile Logo -->
+<div class="lg:hidden flex items-center gap-3 mb-12">
+<span class="material-symbols-outlined text-primary text-3xl">chair</span>
+<h2 class="font-playfair text-2xl font-bold text-neutral-dark dark:text-white">FurnSpace</h2>
+</div>
+<div class="mb-10 text-center lg:text-left">
+<h2 class="font-playfair text-4xl lg:text-5xl font-bold text-neutral-dark dark:text-white mb-4">Üdvözöljük újra</h2>
+<p class="text-neutral-dark/60 dark:text-slate-400 font-body">Kérjük, adja meg adatait a prémium élményhez.</p>
+</div>
+<!-- Form -->
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block text-xs font-semibold uppercase tracking-wider text-neutral-dark/70 dark:text-slate-300" for="email">Email cím</label>
+<input class="w-full border-0 border-b-2 border-primary/20 bg-transparent py-3 px-0 focus:ring-0 focus:border-primary transition-colors placeholder:text-neutral-dark/30 dark:placeholder:text-slate-600 dark:text-white" id="email" placeholder="nev@pelda.hu" type="email"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="block text-xs font-semibold uppercase tracking-wider text-neutral-dark/70 dark:text-slate-300" for="password">Jelszó</label>
+<a class="text-xs text-accent hover:text-primary font-medium transition-colors" href="#">Elfelejtett jelszó?</a>
+</div>
+<div class="relative">
+<input class="w-full border-0 border-b-2 border-primary/20 bg-transparent py-3 px-0 focus:ring-0 focus:border-primary transition-colors placeholder:text-neutral-dark/30 dark:placeholder:text-slate-600 dark:text-white" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-neutral-dark/40 hover:text-primary dark:text-slate-500" type="button">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-body font-semibold py-4 rounded transition-all shadow-lg shadow-primary/20 active:scale-[0.98]" type="submit">
+                            Bejelentkezés
+                        </button>
+</div>
+<!-- Separator -->
+<div class="relative my-8">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-neutral-dark/10 dark:border-slate-800"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="bg-background-light dark:bg-background-dark px-4 text-neutral-dark/40 dark:text-slate-500 font-body">vagy</span>
+</div>
+</div>
+<!-- Google OAuth -->
+<button class="w-full flex items-center justify-center gap-3 border-2 border-neutral-dark/5 hover:border-accent/30 bg-white dark:bg-slate-800 py-3 rounded transition-all group" type="button">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="font-body font-medium text-neutral-dark dark:text-slate-200">Bejelentkezés Google-lel</span>
+</button>
+</form>
+<div class="mt-12 text-center text-sm font-body">
+<p class="text-neutral-dark/60 dark:text-slate-400">
+                        Még nincs fiókja? 
+                        <a class="text-accent hover:text-primary font-bold transition-colors" href="#">Regisztráció</a>
+</p>
+</div>
+<!-- Footer Links -->
+<div class="mt-8 flex justify-center gap-6 text-[10px] uppercase tracking-widest text-neutral-dark/30 dark:text-slate-600">
+<a class="hover:text-primary transition-colors" href="#">Adatvédelem</a>
+<a class="hover:text-primary transition-colors" href="#">Általános feltételek</a>
+<a class="hover:text-primary transition-colors" href="#">Segítség</a>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiókom - Profil | FurnSpace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7B3F00", // Chocolate Brown
+                        "accent": "#F5E6D3", // Almond Cream
+                        "background-light": "#F5F5F5", // White Smoke
+                        "background-dark": "#1A1A1A",
+                        "charcoal": "#333333",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "heading": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            color: #333333;
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-charcoal dark:text-slate-100 transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-stone-200 bg-white/80 backdrop-blur-md dark:border-stone-800 dark:bg-stone-900/80">
+<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="h-8 w-8" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"></path>
+</svg>
+</div>
+<h2 class="font-heading text-2xl font-bold tracking-tight text-charcoal dark:text-white">FurnSpace</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Kollekciók</a>
+<a class="hover:text-primary transition-colors" href="#">Tervezés</a>
+<a class="hover:text-primary transition-colors" href="#">Rólunk</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-full p-2 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">
+<span class="material-symbols-outlined text-charcoal dark:text-white">search</span>
+</button>
+<button class="relative flex items-center justify-center rounded-full p-2 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">
+<span class="material-symbols-outlined text-charcoal dark:text-white">shopping_bag</span>
+<span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-white">2</span>
+</button>
+</div>
+</div>
+</header>
+<main class="mx-auto w-full max-w-7xl grow px-6 py-12 lg:px-12">
+<div class="flex flex-col gap-12 lg:flex-row">
+<!-- Sidebar Navigation -->
+<aside class="w-full lg:w-64 flex-shrink-0">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-4 pb-6 border-b border-stone-200 dark:border-stone-800">
+<div class="h-16 w-16 overflow-hidden rounded-full border-2 border-accent bg-stone-200 shadow-sm">
+<img alt="Profilkép" class="h-full w-full object-cover" data-alt="Modern portré egy elégedett ügyfélről" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD24Fbx-GLxwNc2b0lRhf3PHrgEMlZcsHLJseTCeBfJ8SmY9RqPCFF5sHJ3q4shASW1zcp2dqaLjUBuqJvTktYQUReUNQy-TyE8iT7fTJkOaWkx7pSbIN3YF2ZTeTgJTjLHsC02r7GvieGR6hT7kUQBYzkIz16faRWG81K_YD9e1PfZY_5f_LI22mrAULkrYuvPUWrtHuG1UUbBp-R_5fzQ_ippO82G36b6UEn7eLhrlGDWZ5r0R87G0k5za1qSLHczlAN6dzItkvU"/>
+</div>
+<div>
+<h3 class="font-heading text-lg font-bold text-charcoal dark:text-white">Kovács István</h3>
+<p class="text-xs text-stone-500 uppercase tracking-wider">Prémium Tag</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-lg bg-accent/50 px-4 py-3 text-sm font-semibold text-primary transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+                                Profil
+                            </a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">package_2</span>
+                                Rendelések
+                            </a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+                                Kedvencek
+                            </a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                                Beállítások
+                            </a>
+<div class="my-4 border-t border-stone-100 dark:border-stone-800"></div>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                                Kijelentkezés
+                            </a>
+</nav>
+</div>
+</aside>
+<!-- Profile Content -->
+<section class="flex-1 max-w-3xl">
+<header class="mb-10">
+<h1 class="text-4xl font-bold text-charcoal dark:text-white mb-2">Fiókom - Profil</h1>
+<p class="text-stone-500 font-light text-lg">Kezelje személyes adatait és szállítási preferenciáit az elegánsabb vásárlási élményért.</p>
+</header>
+<div class="bg-accent/20 dark:bg-stone-800/40 rounded-xl p-8 shadow-sm border border-accent/30">
+<form class="flex flex-col gap-8">
+<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+<!-- Full Name -->
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-stone-500">Teljes név</label>
+<input class="w-full rounded border-stone-200 bg-white px-4 py-3 text-stone-800 focus:border-primary focus:ring-1 focus:ring-primary dark:border-stone-700 dark:bg-stone-900 dark:text-white" placeholder="Adja meg nevét" type="text" value="Kovács István"/>
+</div>
+<!-- Email (Disabled/Display) -->
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-stone-500">E-mail cím</label>
+<input class="w-full rounded border-stone-100 bg-stone-50 px-4 py-3 text-stone-400 cursor-not-allowed dark:border-stone-800 dark:bg-stone-950" disabled="" type="email" value="istvan.kovacs@example.hu"/>
+</div>
+</div>
+<!-- Shipping Address -->
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-stone-500">Szállítási cím</label>
+<textarea class="w-full rounded border-stone-200 bg-white px-4 py-3 text-stone-800 focus:border-primary focus:ring-1 focus:ring-primary dark:border-stone-700 dark:bg-stone-900 dark:text-white" placeholder="Város, utca, házszám, irányítószám" rows="3">1051 Budapest, Szent István tér 1. 2/4.</textarea>
+<p class="text-[11px] text-stone-400 italic">Ez a cím lesz az alapértelmezett a következő vásárlásai során.</p>
+</div>
+<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+<!-- Phone -->
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-stone-500">Telefonszám</label>
+<input class="w-full rounded border-stone-200 bg-white px-4 py-3 text-stone-800 focus:border-primary focus:ring-1 focus:ring-primary dark:border-stone-700 dark:bg-stone-900 dark:text-white" type="tel" value="+36 30 123 4567"/>
+</div>
+<!-- Birth Date -->
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-widest text-stone-500">Születési dátum</label>
+<input class="w-full rounded border-stone-200 bg-white px-4 py-3 text-stone-800 focus:border-primary focus:ring-1 focus:ring-primary dark:border-stone-700 dark:bg-stone-900 dark:text-white" type="date" value="1985-05-12"/>
+</div>
+</div>
+<div class="pt-6 border-t border-accent/30 flex justify-end gap-4">
+<button class="px-6 py-3 text-sm font-semibold text-stone-500 hover:text-stone-800 transition-colors uppercase tracking-widest" type="button">
+                                    Mégse
+                                </button>
+<button class="bg-primary hover:bg-primary/90 text-white px-10 py-3 rounded text-sm font-bold uppercase tracking-[0.15em] shadow-lg shadow-primary/20 transition-all active:scale-[0.98]" type="submit">
+                                    Módosítások mentése
+                                </button>
+</div>
+</form>
+</div>
+<!-- Security Section -->
+<div class="mt-12">
+<h2 class="font-heading text-2xl font-bold text-charcoal dark:text-white mb-6">Biztonság</h2>
+<div class="flex items-center justify-between p-6 bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 rounded-xl">
+<div class="flex items-center gap-4">
+<div class="bg-accent/30 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div>
+<p class="font-semibold text-charcoal dark:text-white">Jelszó megváltoztatása</p>
+<p class="text-sm text-stone-500">Utoljára 3 hónapja frissítve</p>
+</div>
+</div>
+<button class="text-primary text-sm font-bold uppercase tracking-widest hover:underline">Frissítés</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="mt-auto border-t border-stone-200 bg-stone-50 py-12 dark:border-stone-800 dark:bg-stone-950">
+<div class="mx-auto max-w-7xl px-6 lg:px-12 text-center">
+<p class="text-sm font-light text-stone-500">© 2024 FurnSpace Design. Minden jog fenntartva.</p>
+<div class="mt-4 flex justify-center gap-6 text-xs font-medium uppercase tracking-widest text-stone-400">
+<a class="hover:text-primary" href="#">Adatvédelem</a>
+<a class="hover:text-primary" href="#">ÁSZF</a>
+<a class="hover:text-primary" href="#">Kapcsolat</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

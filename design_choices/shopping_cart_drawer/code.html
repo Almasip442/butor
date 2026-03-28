@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "chocolate": "#4b2038",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .cart-drawer-overlay {
+            background-color: rgba(34, 22, 16, 0.4);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<!-- Background Content (Home Page Mockup) -->
+<div class="fixed inset-0 z-0">
+<header class="flex items-center justify-between px-8 py-6 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="text-2xl font-serif font-bold tracking-tight">FurnSpace</div>
+<nav class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Nappali</a>
+<a class="hover:text-primary transition-colors" href="#">Hálószoba</a>
+<a class="hover:text-primary transition-colors" href="#">Étkező</a>
+<a class="hover:text-primary transition-colors" href="#">Kiegészítők</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer">search</span>
+<span class="material-symbols-outlined cursor-pointer">shopping_bag</span>
+</div>
+</header>
+<main class="p-8">
+<div class="max-w-7xl mx-auto">
+<div class="h-[60vh] w-full bg-slate-200 dark:bg-slate-800 rounded-xl relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Luxurious minimalist living room with green velvet sofa" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACk2iNV449p2JaC6dql0JHZG0fB9LO_PC2-B1KTGgsu0VQbjvwBkginIWK2woPRYBVDP94DHxSFOlCp9KQUtAHvsldzJviSjCwaUJh-fYMGi8CCcGyeXn0vJl3lFbTqL2Ubj6_iVmbe1lhaBCtcs7ZeIbl8v4tNXmYCvcqmqE4QY6h6Bt8Wd7Y9ZRTKI2H7Jn1ZyF34ZmlXqNHqNZ2mz8EfKcgs11iD_RaUYLRh61cbI8xxvGYTbSBIPZwH5UKHv45GdHUJ9E_GWg')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark/60 to-transparent flex flex-col justify-center px-12">
+<h1 class="font-serif text-6xl text-white mb-6">Időtlen Elegancia</h1>
+<p class="text-white/80 max-w-md text-lg mb-8">Fedezze fel legújabb prémium kollekciónkat, ahol a kényelem találkozik a kifinomult designnal.</p>
+<button class="bg-primary text-white px-8 py-4 rounded-full w-fit font-medium hover:bg-primary/90 transition-all uppercase tracking-widest text-sm">Vásárlás Most</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Shadcn Sheet Style Cart Drawer -->
+<div class="fixed inset-0 z-50 flex justify-end">
+<!-- Dimmed Background Overlay -->
+<div class="absolute inset-0 cart-drawer-overlay"></div>
+<!-- The Drawer -->
+<div class="relative w-full max-w-md bg-background-light dark:bg-background-dark h-full shadow-2xl flex flex-col border-l border-slate-200 dark:border-slate-800">
+<!-- Drawer Header -->
+<div class="px-8 pt-8 pb-6 flex items-center justify-between">
+<div class="flex flex-col">
+<h2 class="font-serif text-3xl font-bold text-slate-900 dark:text-slate-100">Kosár</h2>
+<span class="text-xs uppercase tracking-[0.2em] text-slate-500 mt-1">FurnSpace Premium Interior</span>
+</div>
+<button class="h-10 w-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Cart Items List (Scrollable) -->
+<div class="flex-1 overflow-y-auto px-8 py-4 space-y-8">
+<!-- Item 1 -->
+<div class="flex gap-4 group">
+<div class="h-24 w-24 flex-shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+<img class="h-full w-full object-cover" data-alt="Modern emerald green velvet sofa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLw57wN513pP67oQG2w12Vtut62OAMPl3U8phAQ4XIB9ft-UebX0s8eE334tZ9KnzAHI9Bt96dadtVX4Jub3-EXRwecAmzST9vsz0rY2-zuaknf84ygjdYwZ1gkLdpbEOsRNxdhsaS2qyfpfl_wjcZsiSjbRjnSC4u_axxe473xXjPfJSMvZTY-rgmRpFTgAdDRJz_nbOMlrY-nYt6HBOY4zpckKRoM17sCMX-2Jv9RhxytcbJKTMneO3wzBGb4y3ozj3AErZrUFg"/>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-sans font-semibold text-slate-900 dark:text-slate-100 leading-snug">Modern Velvet Sofa</h3>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+<p class="text-xs text-slate-500 mt-1">Chocolate Brown - Premium Edition</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-full h-8 px-1">
+<button class="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-primary">-</button>
+<span class="w-8 text-center text-xs font-medium">1</span>
+<button class="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-primary">+</button>
+</div>
+<span class="font-sans font-medium text-chocolate dark:text-primary">125.000 Ft</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 group">
+<div class="h-24 w-24 flex-shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+<img class="h-full w-full object-cover" data-alt="Minimalist wooden coffee table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjHWeGNDbsmQGt9XmzZxaolZk9GFpRYT1KQD3jm5pLNG56uF-nh1ed4A70scsl_71sNrTIKXnFNcNbThU-U37yOQEfrLsuWraAEOwrqpun_j4qPtw5FJsS7rL2AmlxpuQpZcciZFZRzEwaTQib9NCWJoccDAK_7iT9R_fS-AylftpkK-71XNEO7gDAxRhWSRxh3XeC4KMRW8EK4zBp5EcyAQSqVLz5nmZgwPm2lfRSAN2_Ws6g7zUkW8TzH6FdrKnOZ1eg28KCtW8"/>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-sans font-semibold text-slate-900 dark:text-slate-100 leading-snug">Oak Coffee Table</h3>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+<p class="text-xs text-slate-500 mt-1">Natural Wood Finish</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-full h-8 px-1">
+<button class="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-primary">-</button>
+<span class="w-8 text-center text-xs font-medium">1</span>
+<button class="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-primary">+</button>
+</div>
+<span class="font-sans font-medium text-chocolate dark:text-primary">45.000 Ft</span>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex gap-4 group">
+<div class="h-24 w-24 flex-shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+<img class="h-full w-full object-cover" data-alt="Modern minimalist floor lamp" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg3kKX-N-bbu1wb7JTV00Wfh00ASxUnZuxCNqjdIWadV4JDVSPlQYYep066wVCxDweIMjtOUQucKN0NYz6muGJtHLIZzQcr5gjM9sSO2hQSJ9T35BiY0lcBlu9-aXtFStrb1-yGZILspymcaVeqSxp31rpEGjOenC6RahM_TePdsaYGSkfcV3ZdsO4bc0ObU7MGRLXwJsvkDpX6xmvr4RmFxqqfJIRo3XUtJWzWLRhXnNl_aiTN_AB7le8xemjlePFvqlg_DL8n8w"/>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-sans font-semibold text-slate-900 dark:text-slate-100 leading-snug">Minimalist Floor Lamp</h3>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+<p class="text-xs text-slate-500 mt-1">Matte Black</p>
+<div class="mt-auto flex items-center justify-between">
+<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-full h-8 px-1">
+<button class="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-primary">-</button>
+<span class="w-8 text-center text-xs font-medium">1</span>
+<button class="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-primary">+</button>
+</div>
+<span class="font-sans font-medium text-chocolate dark:text-primary">22.500 Ft</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer -->
+<div class="px-8 py-8 border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-sm">
+<div class="space-y-3 mb-8">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500 uppercase tracking-widest">Részösszeg</span>
+<span class="font-medium">192.500 Ft</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500 uppercase tracking-widest">Szállítás</span>
+<span class="text-green-600 font-medium">Ingyenes</span>
+</div>
+<div class="pt-3 border-t border-slate-200 dark:border-slate-700 flex justify-between">
+<span class="font-serif text-xl font-bold">Összesen</span>
+<span class="font-serif text-xl font-bold text-chocolate dark:text-primary">192.500 Ft</span>
+</div>
+</div>
+<button class="w-full bg-chocolate dark:bg-primary text-white py-5 rounded-full font-medium uppercase tracking-[0.2em] text-sm hover:opacity-90 transition-opacity">
+                    Pénztárhoz
+                </button>
+<p class="text-center text-[10px] text-slate-400 mt-4 uppercase tracking-widest">
+                    Biztonságos fizetés &amp; Ingyenes visszaküldés
+                </p>
+</div>
+</div>
+</div>
+</body></html>

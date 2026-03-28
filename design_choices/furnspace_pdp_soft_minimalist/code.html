@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a65d1a", // hsl(30, 80%, 35%) approx
+                        "secondary": "#dfd3c3", // hsl(31, 32%, 82%) approx
+                        "accent": "#b68349", // hsl(30, 43%, 50%) approx
+                        "background-light": "#f6f6f5", // hsl(60, 2%, 96%)
+                        "background-dark": "#221610",
+                        "surface": "#ffffff",
+                        "text-main": "#1e1e1e", // hsl(0, 0%, 12%)
+                        "border-soft": "#dbcfc1", // hsl(30, 36%, 81%)
+                        "chocolate": "#3d2b1f"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "heading": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6f6f5;
+            color: #1e1e1e;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-slate-100">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-border-soft">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">chair</span>
+<h2 class="text-2xl font-heading font-bold tracking-tight">FurnSpace</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Nappali</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Háló</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Konyha</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Iroda</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="pl-10 pr-4 py-2 bg-secondary/20 border-none rounded-full text-sm focus:ring-1 focus:ring-primary w-64" placeholder="Keresés..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-secondary/30 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="p-2 hover:bg-secondary/30 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover bg-center border border-border-soft" data-alt="User profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdmbDYEXK1Rn6gzwi2KsjXSyuOPSEKZZNuNyr9CoPlGvvl_XSkccDx1EHU0lQqTrGHPGcIrfrobjDC4132ZSfVrAYEVcBkzImfmjKYYHwSf9cWoJHPyK0BfDjboGg3f0o6qnSHVLDW00tV6X8g5PSKwtxf7ZfF5-CdTanFh1GKo3hAxmm8uUhqssHVuWns_x_1j8gLyJZmayHxER1yju5G3DdgK5ZFdZ3GlY8bc0ZK-5NgUFqGNkE7Nt3bahDeNMYS0ci-UjHkNpM5')"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-sm text-slate-500 mb-12">
+<a class="hover:text-primary" href="#">Főoldal</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary" href="#">Asztalok</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-text-main font-medium">Nordic Tölgyfa Étkezőasztal</span>
+</nav>
+<!-- Product Hero Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
+<!-- Left: Image Gallery -->
+<div class="lg:col-span-7 flex gap-4">
+<!-- Vertical Thumbnails -->
+<div class="hidden sm:flex flex-col gap-4 w-24">
+<div class="aspect-[3/4] rounded-lg bg-cover bg-center border-2 border-primary cursor-pointer ring-offset-2" data-alt="Main view of oak dining table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAnkVcxx24PCa_Q0mPSU-mwepOiD9TZS6uno72qH9bXqU2IAydeZepPlRrKf2dmsdpeKdDwxi8C6KCVotc1k9fjGp4JS3fzqgwBDEO8YqGUJsMGIhnqgcT0Ki7aqAU3cgJH--mYlkUC7gxSnPDbdzlfdb2TnWYZ_OBiWpMdFv9zirVpTCTlDvVE4O5UJMo52a2nLABZJuhQhud2YX32_HAK0QH1Fh0i6PfHznImnhkI-j9Hp-rjYCpmkBrPV8eeJQiwL6vzpGlFCpHH')"></div>
+<div class="aspect-[3/4] rounded-lg bg-cover bg-center border border-border-soft cursor-pointer hover:border-accent transition-all" data-alt="Side view of oak dining table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZi5ONJT08BRJrejA1e-ODa4KLKVVjiVA5uIlyYLp9dwms7w_CwmA7oh3jy6fqHfwqHtwJX_RWFN_mPhzzW3MnGgSJDdFpdT4mzQcxhGix4bB_5N0lGxX0FSfNVHXta4IS7afl29Oi7Ucc8lx32rtF7okNrb60vItt70BGwah1NNQd20FFHwfaFoD4NuebrFhvQeeUO205cnXh22EohISeYFyP64JvV02CuNbpTQJ-iJU2izRg8c6SDBykcLyhYwJBrAmykfyhdJFk')"></div>
+<div class="aspect-[3/4] rounded-lg bg-cover bg-center border border-border-soft cursor-pointer hover:border-accent transition-all" data-alt="Detail texture of solid oak wood" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoFemym12WWryl5EnhJiRNBAoBJfgEQhD-nLo1a5YyTmHjVbZ0nC-Y6Lop1CSuo3CP_p0ZO_3kPiM4UIubY01iDcJrPFy44xmxqzSgMvoDFh-VesmD8t1rV5yKn5BktehKZROsqQYWQOpG-6PDBT2v6iLbGqRdKv7reLmvZJKOPE4LYFeqfczMUlBcpHazUdstQ3brK8MpkQ3SeCtm_c71QvE0bAHmebc3hqIm4pN66GDGwgv-WoMP1sIvpmAaRCSFAXkytG2U1A2_')"></div>
+<div class="aspect-[3/4] rounded-lg bg-cover bg-center border border-border-soft cursor-pointer hover:border-accent transition-all" data-alt="Living room setup with table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFIaLYQLJgkWz6sxkjLNbFVcmdpPJI9fXJ5UBDNYdWMwSxzxodkRgoqT_NMSBQlKhBjcXL6KaoP0fKSmn0tFRtNXTv5Ar_9MOWtoWmJzEP2NGdyTUyT6NT_-TrMqn4gKn3yJ4nSxEff_DCqGCQggqVw37TPVj2M4_Tl91urLJMu5uz0KdDHaq5eSmznym7nE4TwiPidpxXqZepcm7Yyl54VNA8J0FmxQs7E1rC5K-JPpsRFRGwoGuElTzEEIy3N6mB-drONavfwk3N')"></div>
+</div>
+<!-- Main Large Image -->
+<div class="flex-1">
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center shadow-sm" data-alt="Large minimalist presentation of Nordic Oak Dining Table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfIWeb2IYzM8G7os9fLT-NIRe93WVaDbsnVudruWQneGMj-oISy5AVAAT2tbuKWUrQ4vOpxafmaHqdJaYUGwLMUNCR1_tBrzlKa0JgNxNiu7-9-DDIcz_YnquISYvv0AaEbCYTVDNczUZoD6noDqAl2tEa1khLPou7cfWxQ0IwuTmUdCzqLE4cL6WLj4VVMW7IjtY3FFK13qsZYKqaK5fsFxhVSZc0VtEb3vpC05i_koDpXM3HmOr6o-io7trS1iTfCI2mOA9gRWQX')"></div>
+</div>
+</div>
+<!-- Right: Product Details -->
+<div class="lg:col-span-5 flex flex-col">
+<div class="mb-8">
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-primary text-sm fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-sm fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-sm fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-sm fill-1">star</span>
+<span class="material-symbols-outlined text-primary text-sm">star_half</span>
+<span class="text-xs font-medium text-slate-500 ml-2">(24 vélemény)</span>
+</div>
+<h1 class="text-5xl font-heading font-semibold text-text-main mb-4 leading-tight tracking-tight">Nordic Tölgyfa Étkezőasztal</h1>
+<p class="text-3xl font-light text-primary mb-6">459.900 Ft</p>
+<p class="text-slate-600 leading-relaxed text-lg font-light">
+                        Kézzel készült, fenntartható forrásból származó tömör tölgyfa asztal. A skandináv minimalizmus jegyében tervezve, amely melegséget és organikus eleganciát visz minden otthonba.
+                    </p>
+</div>
+<!-- Specs Section - Almond Cream Background -->
+<div class="bg-secondary/20 rounded-xl p-8 mb-8 flex flex-col gap-6 border border-secondary/40">
+<div class="grid grid-cols-2 gap-y-4 gap-x-8">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-accent font-bold mb-1">Anyag</p>
+<p class="text-sm font-medium">Tömör Európai Tölgy</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-accent font-bold mb-1">Felület</p>
+<p class="text-sm font-medium">Természetes Olaj</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-accent font-bold mb-1">Méretek</p>
+<p class="text-sm font-medium">220 x 100 x 75 cm</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-accent font-bold mb-1">Kapacitás</p>
+<p class="text-sm font-medium">6-8 Személy</p>
+</div>
+</div>
+</div>
+<!-- Interaction Section -->
+<div class="mt-auto space-y-6">
+<div class="flex items-center gap-4">
+<div class="flex items-center border border-border-soft rounded-full bg-white h-14 px-2">
+<button class="w-10 h-10 flex items-center justify-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<input class="w-12 text-center border-none focus:ring-0 font-medium text-lg bg-transparent" type="text" value="1"/>
+<button class="w-10 h-10 flex items-center justify-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+<button class="flex-1 bg-chocolate text-white h-14 rounded-full font-semibold text-base hover:bg-black transition-all shadow-lg shadow-chocolate/20 flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">shopping_cart</span>
+                            Kosárba helyezem
+                        </button>
+</div>
+<div class="flex items-center justify-center gap-8 text-sm text-slate-500 py-4 border-t border-border-soft/50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-lg">local_shipping</span>
+<span>Ingyenes szállítás</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-lg">verified_user</span>
+<span>5 év garancia</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Details Tabs / Content -->
+<div class="mb-24">
+<div class="flex gap-12 border-b border-border-soft mb-12">
+<button class="pb-4 border-b-2 border-primary text-text-main font-semibold">Leírás</button>
+<button class="pb-4 text-slate-400 font-medium hover:text-text-main transition-colors">Specifikációk</button>
+<button class="pb-4 text-slate-400 font-medium hover:text-text-main transition-colors">Vélemények (24)</button>
+<button class="pb-4 text-slate-400 font-medium hover:text-text-main transition-colors">Szállítás</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+<div>
+<h3 class="text-3xl font-heading mb-6">A természet ereje az étkezőben</h3>
+<p class="text-slate-600 leading-relaxed mb-4">
+                        A Nordic Tölgyfa Étkezőasztal minden egyes darabja egyedi történetet mesél el a fa erezetén keresztül. A gondosan válogatott, több évtizedes tölgyfák adják azt a stabilitást és tartósságot, amit egy generációkon átívelő bútordarabtól elvárunk.
+                    </p>
+<p class="text-slate-600 leading-relaxed">
+                        A felületkezeléshez használt prémium minőségű bio olajok nemcsak védik a fát, de kiemelik annak természetes tónusait és selymes tapintását, miközben engedik a fa pórusait lélegezni.
+                    </p>
+</div>
+<div class="relative rounded-xl overflow-hidden aspect-video shadow-2xl">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Close up of wood craftsmanship detail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAYouERvfpYpuXgRjv4rcr1JLk5bnCGhXsUpm5seNeDWoMx1XE9l7zVGI20N-dmIHZR2Y5jXJ13GUglOq1yD_fN9pkhkiA9Awlpc-3eBH9VXk1wnkYWgWmBNVHUviFlhp0qWubTTa_C2ao1Md7A1NODVN2HbjK_-_ag3SIL-u62dQ5mfVo7XWruKzDwwpRtdpMKR8DGvNpfAJ98r_T0PFl9CqxElM3JSXkmaPbYNEg5Dx-pHwNdlIb1G3bL7pjrlo-paZlPGdqgX_f')"></div>
+<div class="absolute inset-0 bg-chocolate/10 flex items-center justify-center">
+<div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl fill-1">play_arrow</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Products (Horizontal Scroll) -->
+<section class="mb-12">
+<div class="flex items-end justify-between mb-8">
+<div>
+<h2 class="text-4xl font-heading font-semibold text-text-main mb-2">Hasonló termékek</h2>
+<p class="text-slate-500">Egészítse ki étkezőjét stílusban illő darabokkal</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full border border-border-soft hover:bg-white transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="p-2 rounded-full border border-border-soft hover:bg-white transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex gap-6 overflow-x-auto pb-8 snap-x no-scrollbar">
+<!-- Product Card 1 -->
+<div class="min-w-[300px] snap-start group cursor-pointer">
+<div class="aspect-[4/5] bg-secondary/10 rounded-xl mb-4 overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist oak dining chair" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0dX8ZFeRXPvG3OCNPGoF_2GrCtFU55Uv_I2qqc_viFiUdLxjHhdxSfQHjr9kjOgEVTUQ7hlKCiM-QkaW5FQ6IlEEDjF-433FZS14i4g4blgKAIKGsrijyWrkQZlo_A7M9vXHA0A-3egeMLG__7bn2apxMUvthzclM8iFoZGH96L99h4iql14oFAmBEk-hFt2AiIDYT51JGY15uZJ1nZz2tzbsHC10GOFBWYeXvUOUpe-QvT-EN_f5bRvSAobtxNpBSdr2nvDfekC9')"></div>
+<button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur rounded-full text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<h4 class="font-heading text-xl mb-1 group-hover:text-primary transition-colors">Nordic Tölgyfa Szék</h4>
+<p class="text-slate-500 text-sm mb-2">Kézzel kárpitozott üléssel</p>
+<p class="font-bold text-primary">64.900 Ft</p>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[300px] snap-start group cursor-pointer">
+<div class="aspect-[4/5] bg-secondary/10 rounded-xl mb-4 overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Wooden side cabinet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFumaz6h5ERz4J3pO0ut7qc5hQMaLTu5q6yojP8IgvgcIFW9mMSFufWXiRvtOVxIdshpZ-KYkqHJCSshD-CH1VR7ZmDDNEFJ4FScjZk901wrQrh-XKlEHV9eMNfCbRMQfAGCLA30uJKQTWFFl6T2cUsqQZGS5LyKGFlQbYTwX_dyDeUQgw6hlrQHEf-PmPOlbRmYJngY-j4QTyvBewKrlfcdpGD9f_eFmVxnTZSjSY7T9_DlzMpOp9cjMEe2iT79ypO9pYFDUtkoZf')"></div>
+<button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur rounded-full text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<h4 class="font-heading text-xl mb-1 group-hover:text-primary transition-colors">Vesterbro Tálaló</h4>
+<p class="text-slate-500 text-sm mb-2">3 fiókos, natúr tölgy</p>
+<p class="font-bold text-primary">312.000 Ft</p>
+</div>
+<!-- Product Card 3 -->
+<div class="min-w-[300px] snap-start group cursor-pointer">
+<div class="aspect-[4/5] bg-secondary/10 rounded-xl mb-4 overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Pendant designer lamp" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAk0gJMJary3g9_7-G8Cz-D1i2LgiwSxhZQ0AgRHbEXpxfGHY1vXQXYsAbE51PNYQEtZDvXfzBvKmcpsHHGU9yeX3k9lwhJkKlS_7kw_jS55XCx4ZypxZ1syGqimNstLUKV4aXSQES6WqZ0V99bJAWTvBzdooRdZvFg2JxNRT2W_lAM0rC1YAZ5kJ6Q91TXlSFHTgSIa8uj1KXqyY-gdBUtK0r32Lz4BVRKFFjD524haFtjjWFaHzwHkcyeJEpojtbVGATMvp5RsuJN')"></div>
+<button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur rounded-full text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<h4 class="font-heading text-xl mb-1 group-hover:text-primary transition-colors">Lumiere Függőlámpa</h4>
+<p class="text-slate-500 text-sm mb-2">Szálcsiszolt sárgaréz</p>
+<p class="font-bold text-primary">89.900 Ft</p>
+</div>
+<!-- Product Card 4 -->
+<div class="min-w-[300px] snap-start group cursor-pointer">
+<div class="aspect-[4/5] bg-secondary/10 rounded-xl mb-4 overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist wool rug" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBht-GbaOKjUnxIb-ZpGTBwmjk5mNQNpCEuUq0GpCJuKStpDfgVGOGOfn7YtCxzyUDyZyrjsvtRvmYWt0Smjw87O9lCRZiw_Q1SSPc2hmOxsgWWcyOCMEvn7nuNm76-V8vqQXlwXD-4pQSuXosrsUnzF-zTa3IYNl3BLR66F2vsZKT949Mj4BV9bRqogpS_RwjMz6vjGfi4JdL43YkqvSL97RNNvSho-zoYV6MaxZwRYFju94QMV1vRrDtbtwXVVM6pO9koLZYL7zkh')"></div>
+<button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur rounded-full text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<h4 class="font-heading text-xl mb-1 group-hover:text-primary transition-colors">Sienna Gyapjúszőnyeg</h4>
+<p class="text-slate-500 text-sm mb-2">200x300 cm, krémszín</p>
+<p class="font-bold text-primary">124.500 Ft</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-chocolate text-secondary/70 py-16 px-6">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 text-white mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">chair</span>
+<h2 class="text-2xl font-heading font-bold tracking-tight">FurnSpace</h2>
+</div>
+<p class="text-sm leading-relaxed">
+                    Minőségi bútorok a fenntarthatóság és az esztétikum jegyében. Segítünk otthonossá tenni a tereit.
+                </p>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6 uppercase tracking-wider text-xs">Vásárlás</h4>
+<ul class="space-y-3 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Szállítási információk</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Visszaküldés és csere</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Üzletkereső</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Hűségprogram</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6 uppercase tracking-wider text-xs">Rólunk</h4>
+<ul class="space-y-3 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Történetünk</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Fenntarthatóság</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Karrier</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Kapcsolat</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6 uppercase tracking-wider text-xs">Hírlevél</h4>
+<p class="text-xs mb-4">Iratkozzon fel az újdonságokért és exkluzív ajánlatokért.</p>
+<div class="flex">
+<input class="bg-white/10 border-none rounded-l-lg px-4 py-2 w-full text-sm focus:ring-1 focus:ring-primary text-white" placeholder="Email cím" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-r-lg hover:bg-accent transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+<p>© 2024 FurnSpace. Minden jog fenntartva.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#">Adatvédelmi nyilatkozat</a>
+<a class="hover:text-white" href="#">ÁSZF</a>
+<a class="hover:text-white" href="#">Cookie szabályzat</a>
+</div>
+</div>
+</footer>
+</body></html>

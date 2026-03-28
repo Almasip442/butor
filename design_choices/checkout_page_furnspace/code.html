@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;family=Playfair+Display:wght@700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13", // Theme Primary
+                        "copper": "#b87333", // Highlight color
+                        "chocolate": "#3d1f16", // Primary Button
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f4; /* White Smoke approximation */
+        }
+        .form-input:focus {
+            border-color: #b87333 !important;
+            ring-color: #b87333 !important;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 py-8">
+<!-- Minimal Logo -->
+<header class="mb-12 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6">
+<a class="flex items-center gap-2 group" href="#">
+<div class="size-8 bg-chocolate text-white flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-xl">chair</span>
+</div>
+<h1 class="font-display text-2xl font-black tracking-tighter uppercase">FurnSpace</h1>
+</a>
+<a class="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                Vissza a vásárláshoz
+            </a>
+</header>
+<main class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Left Column: Shipping and Billing -->
+<div class="lg:col-span-7 space-y-10">
+<section>
+<h2 class="text-3xl font-display font-bold mb-8 tracking-tight">Pénztár</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+<label class="block text-sm font-semibold mb-2 uppercase tracking-wider text-slate-600 dark:text-slate-400">Teljes név</label>
+<input class="form-input w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg p-4 text-base focus:ring-1 focus:ring-copper" placeholder="Kovács János" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-semibold mb-2 uppercase tracking-wider text-slate-600 dark:text-slate-400">Email cím</label>
+<input class="form-input w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg p-4 text-base focus:ring-1 focus:ring-copper" placeholder="janos@pelda.hu" type="email"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-semibold mb-2 uppercase tracking-wider text-slate-600 dark:text-slate-400">Szállítási cím</label>
+<input class="form-input w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg p-4 text-base focus:ring-1 focus:ring-copper" placeholder="Utca, házszám, emelet" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-semibold mb-2 uppercase tracking-wider text-slate-600 dark:text-slate-400">Város</label>
+<input class="form-input w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg p-4 text-base focus:ring-1 focus:ring-copper" placeholder="Budapest" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-semibold mb-2 uppercase tracking-wider text-slate-600 dark:text-slate-400">Irányítószám</label>
+<input class="form-input w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg p-4 text-base focus:ring-1 focus:ring-copper" placeholder="1051" type="text"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-semibold mb-2 uppercase tracking-wider text-slate-600 dark:text-slate-400">Ország</label>
+<select class="form-input w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg p-4 text-base focus:ring-1 focus:ring-copper">
+<option>Magyarország</option>
+<option>Ausztria</option>
+<option>Szlovákia</option>
+<option>Németország</option>
+</select>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-semibold mb-2 uppercase tracking-wider text-slate-600 dark:text-slate-400">Megjegyzés a rendeléshez</label>
+<textarea class="form-input w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-lg p-4 text-base focus:ring-1 focus:ring-copper resize-none" placeholder="Különleges kérések a szállítással kapcsolatban..." rows="4"></textarea>
+</div>
+</div>
+<div class="pt-8">
+<button class="w-full bg-chocolate hover:bg-slate-800 text-white font-display font-bold py-6 px-8 rounded-lg transition-all transform active:scale-[0.98] text-lg shadow-xl shadow-chocolate/20" type="submit">
+                                Rendelés leadása <span class="block text-xs font-normal opacity-70 mt-1 uppercase tracking-widest">(Fizetési kötelezettséggel járó lépés)</span>
+</button>
+</div>
+</form>
+</section>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="lg:col-span-5">
+<div class="bg-white dark:bg-slate-900 rounded-xl p-8 sticky top-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-xl font-display font-bold mb-8 border-b border-slate-100 dark:border-slate-800 pb-4">Rendelés összesítése</h3>
+<!-- Items List -->
+<div class="space-y-6 mb-8">
+<div class="flex gap-4">
+<div class="size-20 bg-slate-100 dark:bg-slate-800 rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Dark green velvet armchair with wooden legs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJVaMyT9Q8MkPO8AoHYLgI7bX7EASJ1kpFKDg7WpgZSR8mxzbaB0ZuPjJrXdvrY_mW1c2xk32CdAcOwwL_CqUO0G8hPsmlke6jZ8Wd75EgQnh6-HAmhBoM8qUpBVcocxJD2_lPOkA5MNoqYhotsnOtU-KLXIb9w80i9ClIISdAQgBU5FwXEHJ7nrNCq5KjeLYkc3D4aa1kHNJgio4-zY_rwPC5RrLaP3PKpZVA3EvmDOKnlCA3ek4XIf0-gYyxmDuBavSCPa-_ReQ"/>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<h4 class="font-semibold text-slate-900 dark:text-white">Aurelius Bársony Fotel</h4>
+<p class="text-sm text-slate-500">Sötétzöld • 1 db</p>
+<p class="text-sm font-medium mt-1">124.900 Ft</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-20 bg-slate-100 dark:bg-slate-800 rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Minimalist solid oak coffee table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCehc8zH38m2k93YrBV8GKjf88NV04keU8MmLMLvkUK2UMCDJbeM06tFf1zSqDHUkVivRG71PqOrT6FNodGujgILsX1tAzK-xfwwTFg_8iv1CjpgsCnpI46t0OMgVOlxx9ECHIBeporlUDHSQzIN9B2eFFUVmVUWhW5l4OCGH6qO4Ph4L5vpuw_t_HpLfIIbg9gDwUlhwwJqCXS5Bv81YVR9Q3J3xLJf0zQcsKA12YXHYiQOkxPcgvWiIYUH-fcVaZL9lIrWOIZv1A"/>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<h4 class="font-semibold text-slate-900 dark:text-white">Oak Coffee Table</h4>
+<p class="text-sm text-slate-500">Természetes Tölgy • 1 db</p>
+<p class="text-sm font-medium mt-1">89.500 Ft</p>
+</div>
+</div>
+</div>
+<!-- Breakdown -->
+<div class="space-y-4 pt-6 border-t border-slate-100 dark:border-slate-800">
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>Részösszeg</span>
+<span>214.400 Ft</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>Szállítás</span>
+<span class="text-green-600 font-medium">Ingyenes</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>ÁFA (27%)</span>
+<span>57.888 Ft</span>
+</div>
+<div class="flex justify-between items-baseline pt-4 mt-4 border-t-2 border-slate-900 dark:border-slate-100">
+<span class="text-lg font-bold">Végösszeg</span>
+<span class="font-serif text-3xl font-bold text-chocolate dark:text-white">214.400 Ft</span>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2 text-[10px] uppercase tracking-tighter text-slate-400 font-bold">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                            Biztonságos Fizetés
+                        </div>
+<div class="flex items-center gap-2 text-[10px] uppercase tracking-tighter text-slate-400 font-bold">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+                            Biztosított Szállítás
+                        </div>
+</div>
+</div>
+<!-- Promotion Code Section -->
+<div class="mt-6 px-4">
+<button class="text-sm text-slate-500 hover:text-chocolate underline underline-offset-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">sell</span>
+                        Van kuponkódja?
+                    </button>
+</div>
+</div>
+</main>
+<!-- Footer Note -->
+<footer class="mt-20 text-center border-t border-slate-200 dark:border-slate-800 pt-8 pb-12">
+<p class="text-xs text-slate-400 uppercase tracking-widest">© 2024 FurnSpace Luxury Furniture. Minden jog fenntartva.</p>
+</footer>
+</div>
+</body></html>

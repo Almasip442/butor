@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FurnSpace | Refined Luxury Furniture</title>
+<!-- Google Fonts: Playfair Display and Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'whitesmoke': 'hsl(60, 2%, 96%)',
+            'charcoal': 'hsl(0, 0%, 12%)',
+            'chocolate': 'hsl(30, 80%, 35%)',
+            'copper': 'hsl(30, 43%, 50%)',
+            'almond': 'hsl(31, 32%, 82%)',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '0.5rem',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    body {
+      background-color: hsl(60, 2%, 96%);
+      color: hsl(0, 0%, 12%);
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+<style data-purpose="layout-utilities">
+    .asymmetric-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .hover-lift {
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .hover-lift:hover {
+      transform: translateY(-8px);
+    }
+    .badge-copper {
+      background-color: hsl(30, 43%, 50%);
+      color: white;
+    }
+  </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 bg-whitesmoke/90 backdrop-blur-md border-b border-charcoal/5">
+<nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<!-- Logo -->
+<a class="text-3xl font-serif font-bold tracking-tight text-chocolate" data-purpose="logo" href="#">
+        FurnSpace
+      </a>
+<!-- Desktop Navigation -->
+<div class="hidden md:flex items-center space-x-10 text-sm font-medium uppercase tracking-widest" data-purpose="main-nav">
+<a class="hover:text-copper transition-colors" href="#">Living</a>
+<a class="hover:text-copper transition-colors" href="#">Dining</a>
+<a class="hover:text-copper transition-colors" href="#">Bedroom</a>
+<a class="hover:text-copper transition-colors" href="#">Workspace</a>
+</div>
+<!-- Utilities -->
+<div class="flex items-center space-x-6">
+<!-- Search -->
+<button aria-label="Keresés" class="p-2 text-charcoal hover:text-copper transition-colors">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</button>
+<!-- User -->
+<a aria-label="Profil" class="p-2 text-charcoal hover:text-copper transition-colors" href="#">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</a>
+<!-- Cart -->
+<a aria-label="Kosár" class="p-2 relative text-charcoal hover:text-copper transition-colors" href="#">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+<span class="absolute top-0 right-0 h-4 w-4 bg-copper text-white text-[10px] flex items-center justify-center rounded-full">2</span>
+</a>
+</div>
+</nav>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden py-12 md:py-24 px-6 md:px-12" data-purpose="hero">
+<div class="max-w-7xl mx-auto w-full grid md:grid-cols-12 gap-8 items-center">
+<!-- Hero Text -->
+<div class="md:col-span-6 z-10">
+<h1 class="text-6xl md:text-8xl font-serif leading-none mb-8 tracking-tight">
+            Elevate Your<br/>
+<span class="italic text-copper">Living Space</span>
+</h1>
+<p class="text-lg md:text-xl text-charcoal/70 max-w-md mb-10 font-light leading-relaxed">
+            Curated collections that blend modern minimalism with organic warmth. Discover craftsmanship that defines your home.
+          </p>
+<a class="inline-block bg-chocolate text-white px-10 py-5 rounded-custom text-sm font-semibold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-xl shadow-chocolate/20" href="#">
+            Vásárlás
+          </a>
+</div>
+<!-- Hero Image -->
+<div class="md:col-span-7 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 w-full h-[500px] md:h-[700px] md:w-[55%]">
+<div class="relative w-full h-full">
+<img alt="Modern Minimalist Living Room" class="w-full h-full object-cover rounded-custom shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2Nl7v-a5YM17KTztLbTeSAm3v0cKz0bpdkq1n27gJAkaOezR4StLFg4sNmpfe4Ns0wgun1-Veqx6CPcRDAwsGUphsfSC3YwMOv84pqTNoP0pCKkn5YK_86ZBqVv9Sh1zeu5JPPSYvjiqtloYTwnmlBSRmUlnMeKo3X6h69-_ExlDcU5UjPWTXwjrOJPx4W6a7qf_b9LE818WslLFRqRCAp2DvfT5FLX5_LxoV7tnBF9p8pssWn-qgmPNw8fJsecP-bgxYgzJp02M"/>
+<div class="absolute inset-0 bg-charcoal/5 rounded-custom"></div>
+<!-- Decorative Accent -->
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-almond/30 -z-10 rounded-full blur-3xl"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: FeaturedProducts -->
+<section class="py-24 px-6 max-w-7xl mx-auto" data-purpose="featured-products">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="uppercase tracking-widest text-xs font-bold text-copper mb-4 block">New Arrivals</span>
+<h2 class="text-4xl md:text-5xl font-serif">Featured Collection</h2>
+</div>
+<a class="border-b-2 border-copper text-sm font-bold uppercase tracking-wider pb-1 hover:text-copper transition-colors" href="#">Mindet megnézem</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Product 1 -->
+<article class="group relative hover-lift" data-purpose="product-card">
+<div class="relative aspect-[4/5] overflow-hidden rounded-custom mb-6 bg-almond/20">
+<span class="absolute top-4 left-4 z-10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest badge-copper rounded-full">New</span>
+<img alt="Velvet Sofa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjG57qyPlCXcNVrkHxz41K2KVqtS0Jc2zTHTsNy0rZc-0rcmaop24dmH6UiljwM5cYPcLz8rkfeDC00DnzDWRvMNKB5ECiUfYDIjLbJz0xexF74lSNg9fRxkhkMpCewVLibja699QGvTIvtfMAatqyi_-FbGw6NRtZzA2Ojix1RKc9NXyXirH7N1JW1RR4wKCT1tAqAIQ4VEniDKAasJp1EB6rr1tySl-PqxXsIhSY2E86KEFJAuwqc-bO3MlgSNaKpjfqQUpeKek"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] bg-white py-3 rounded-custom text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg">Kosárba teszem</button>
+</div>
+<h3 class="text-xl font-serif mb-2">Emerald Velvet Sofa</h3>
+<p class="text-copper font-medium tracking-wide">485.000 HUF</p>
+</article>
+<!-- Product 2 -->
+<article class="group relative hover-lift" data-purpose="product-card">
+<div class="relative aspect-[4/5] overflow-hidden rounded-custom mb-6 bg-almond/20">
+<img alt="Marble Coffee Table" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7-Kmyp8RcGugcAoZ2ySGZPmSne32XLokuVxBipL7R17Pk6CwWANDi3q-QiUCjj8wHe11eOrKD9aBMAPXYcgvbQguu0muzWZ_yeyGPU380zalZaAW0q6UwDGP9Q8jMTO7wnZtbHWnSEeGIMbdwLS9D7hYyd8F8vdFf2exmO2ZPtTCO0rmp1_3UmRhLxz9m2nU0SNEk6IozFZ9Vkt9sM_g1ugE5baK7kAWHCkUU_RLvAQjk3lAZ7lMAKPypPxL9-Te8kpCCoTVtzd8"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] bg-white py-3 rounded-custom text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg">Kosárba teszem</button>
+</div>
+<h3 class="text-xl font-serif mb-2">Carrara Marble Table</h3>
+<p class="text-copper font-medium tracking-wide">220.000 HUF</p>
+</article>
+<!-- Product 3 -->
+<article class="group relative hover-lift" data-purpose="product-card">
+<div class="relative aspect-[4/5] overflow-hidden rounded-custom mb-6 bg-almond/20">
+<span class="absolute top-4 left-4 z-10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest badge-copper rounded-full">Featured</span>
+<img alt="Accent Chair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOgDDIqlDg0GGmP2rkXOQLrXGprkf1P2xgJ0hcruqdr1pGjMDEZeqS6GrlufIUSJOWJfBxREQU67xJulql2te1uslY-WshDE9JUHfWuVKd2GZXXiEk_dCWR1jyg2rno7clvC3T_zIf-fVvsgiul4vAp0JkjOPzGPxtE6eV4wHOPIhfEx7fpp4WoPmVB7JmAsxKMIEnLR4VLdlV-YfeL3b2L8lbucnZ1bPoTBQXA0N2fXhF9eJhj1qX1z7Ou5V4mss2qA0iVlnkOzs"/>
+<button class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] bg-white py-3 rounded-custom text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg">Kosárba teszem</button>
+</div>
+<h3 class="text-xl font-serif mb-2">Nodic Oak Lounge Chair</h3>
+<p class="text-copper font-medium tracking-wide">155.000 HUF</p>
+</article>
+</div>
+</section>
+<!-- END: FeaturedProducts -->
+<!-- BEGIN: CategoryGrid -->
+<section class="py-24 bg-almond/10 px-6" data-purpose="categories">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl md:text-5xl font-serif mb-4">Shop by Space</h2>
+<p class="text-charcoal/60 max-w-md mx-auto">Thoughtfully designed for every corner of your home.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-[800px] md:h-[600px]">
+<!-- Large Masonry Item -->
+<a class="relative group overflow-hidden rounded-custom md:col-span-2 md:row-span-2" href="#">
+<img alt="Living Room Category" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoWfVDB0ZwsjLJFQr05domLTvMeiU1-WqOfGDirwciAb8t7Etw3igdovu0Fjh-7-15xCtj_OdAg9Baj06fGR5u5VvJYo9r_1HSswo0tZGdHD7j-6eyhMaFryQ6Iv8L12cdndw8RHhZmy31QcSeVSyrldqal90hCBlRG8PS-OBs98UIe2SSbP6xIOU6_Lu_tP7U3aPDTVNtEOHb2HTgXAKuBtCb8B5komGMzDbwmI5gLYxTW-oWKeRtfLLK_YMyzaZth2s5A23fLBY"/>
+<div class="absolute inset-0 bg-charcoal/20 group-hover:bg-charcoal/40 transition-colors"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="text-3xl text-white font-serif mb-2">Living Room</h3>
+<span class="text-white/80 text-xs uppercase tracking-[0.2em] font-medium border-b border-white/40 pb-1">Shop Now</span>
+</div>
+</a>
+<!-- Small Masonry Item 1 -->
+<a class="relative group overflow-hidden rounded-custom" href="#">
+<img alt="Lighting Category" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPn1QQe3S7ItXSJDHGJ2mERqVdmXz2L7Bvs8kLklerYbFaOEYSno6TgGDJSnKnMz-ofCWoduG2w03t7dF5RJdJHKI5zIk42wgDCh3AvEVUtOQBKp1S46dzVXTkQnSFAdrKK0L5KW6aRUeTmi_zDzq0nhsKmRIaoq1OmBSvPSy6AtwprvnockJ-dmvr83S6zsrdJHn2rgMJqBHuouMNyaGNG9hlauE9XlGJeUCiiCZ1eALYdLkkeIN3dyfzzuhAiRxiLjrl8xRiCxw"/>
+<div class="absolute inset-0 bg-charcoal/20 group-hover:bg-charcoal/40 transition-colors"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl text-white font-serif mb-1">Lighting</h3>
+<span class="text-white/80 text-[10px] uppercase tracking-widest">Explore</span>
+</div>
+</a>
+<!-- Small Masonry Item 2 -->
+<a class="relative group overflow-hidden rounded-custom" href="#">
+<img alt="Workspace Category" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnPmTiCDQYnR_xh24usMcVaTsR92L_zAMjP2Sr4OQBK6cPemt6JHI3t80crai0SFX1dfD2PAZgEgXOJM2SWH41yEaPRQERF5dsM5h7cq25uMBxj27LdrHopUql0nfRZQt3hdXsIQcrRZp-m11MVaa-9gwJuixcFhNL6cl6LSlK_J91UqlzNN4Z1sgC6XGxu0CyFCh43htzntjSLZXxvzFTxx9mPohLb4iRzIlrA8s57Z1kbpapElZ4I1_97VjPVCqaMXG7PpPGIvc"/>
+<div class="absolute inset-0 bg-charcoal/20 group-hover:bg-charcoal/40 transition-colors"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl text-white font-serif mb-1">Workspace</h3>
+<span class="text-white/80 text-[10px] uppercase tracking-widest">Explore</span>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- END: CategoryGrid -->
+<!-- BEGIN: Newsletter -->
+<section class="py-24 px-6 max-w-5xl mx-auto text-center">
+<div class="bg-chocolate p-12 md:p-20 rounded-custom text-white relative overflow-hidden">
+<!-- Abstract Decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+<h2 class="text-3xl md:text-5xl font-serif mb-6 relative z-10">Join our Inner Circle</h2>
+<p class="text-white/80 mb-10 max-w-lg mx-auto relative z-10">Subscribe to receive exclusive offers, interior design tips, and early access to new collections.</p>
+<form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto relative z-10" data-purpose="newsletter-form">
+<input class="flex-grow bg-white/10 border border-white/20 rounded-custom px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-copper/50" placeholder="E-mail cím" type="email"/>
+<button class="bg-white text-chocolate px-8 py-4 rounded-custom font-bold uppercase text-xs tracking-widest hover:bg-almond transition-colors" type="submit">Feliratkozás</button>
+</form>
+</div>
+</section>
+<!-- END: Newsletter -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-whitesmoke border-t border-charcoal/10 pt-24 pb-12 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<!-- Brand Info -->
+<div class="col-span-1 md:col-span-1">
+<a class="text-2xl font-serif font-bold text-chocolate mb-6 block" href="#">FurnSpace</a>
+<p class="text-charcoal/60 text-sm leading-relaxed mb-6">
+            Timeless designs, sustainably sourced materials, and exceptional craftsmanship. We create spaces where life happens beautifully.
+          </p>
+<div class="flex space-x-4">
+<!-- Social Icons (Placeholders) -->
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-charcoal/5 hover:bg-copper hover:text-white transition-all" href="#">
+<span class="sr-only">Instagram</span>
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-charcoal/5 hover:bg-copper hover:text-white transition-all" href="#">
+<span class="sr-only">Pinterest</span>
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12.017 0c-6.627 0-12 5.373-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.261 7.929-7.261 4.162 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+</div>
+</div>
+<!-- Links Groups -->
+<div>
+<h4 class="font-bold text-xs uppercase tracking-widest mb-6">Collections</h4>
+<ul class="space-y-4 text-sm text-charcoal/60">
+<li><a class="hover:text-copper transition-colors" href="#">Living Room</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">Dining Room</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">Bedroom</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">Workspace</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-xs uppercase tracking-widest mb-6">About Us</h4>
+<ul class="space-y-4 text-sm text-charcoal/60">
+<li><a class="hover:text-copper transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">Sustainability</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">Craftsmanship</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">Showrooms</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-xs uppercase tracking-widest mb-6">Support</h4>
+<ul class="space-y-4 text-sm text-charcoal/60">
+<li><a class="hover:text-copper transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">Care Guide</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">Contact</a></li>
+<li><a class="hover:text-copper transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 border-t border-charcoal/5 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-charcoal/40">
+<p>© 2024 FurnSpace. All rights reserved.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a class="hover:text-charcoal transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-charcoal transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FurnSpace Admin - Rendelések Kezelése</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;family=Playfair+Display:wght@700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13", // Copper/Orange tone
+                        "secondary": "#5d4037", // Chocolate Brown
+                        "background-light": "#f8f6f6", // White Smoke
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "sans": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white dark:bg-zinc-900 border-r border-slate-200 dark:border-zinc-800 flex flex-col shrink-0">
+<div class="p-6 border-b border-slate-100 dark:border-zinc-800 flex items-center gap-3">
+<div class="size-10 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">chair</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-secondary dark:text-primary">FurnSpace</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold leading-none">Admin Suite</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto p-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-800 rounded transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">dashboard</span>
+<span class="text-sm font-medium">Irányítópult</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">shopping_bag</span>
+<span class="text-sm font-semibold">Rendelések</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-800 rounded transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">inventory_2</span>
+<span class="text-sm font-medium">Termékek</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-800 rounded transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">group</span>
+<span class="text-sm font-medium">Vásárlók</span>
+</a>
+<div class="pt-4 mt-4 border-t border-slate-100 dark:border-zinc-800">
+<p class="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Beállítások</p>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-800 rounded transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary">settings</span>
+<span class="text-sm font-medium">Konfiguráció</span>
+</a>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-zinc-800">
+<div class="flex items-center gap-3 p-2 rounded hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors cursor-pointer">
+<div class="size-8 rounded-full bg-secondary overflow-hidden" data-alt="Admin user profile picture">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl1bnol-ysTRrm3mRECFE9oxSTPQmV_AJOe6DuIt58hnljZ932fWRnamMgoFYB4Z65kGeWaXbCTe9Vg5GCjf3pW5s63KqPzvuigqyJs99SFXwEGABxMCJYLGaoi-oZaE05AekllbLN_zRTL8pmyiwMMFl6ooQhSa8KdLT9T0OBTdtZRXAqTzRucfcf554ypohFgIztS9NN_yO8cx9BrHWB-uUqXbGS0lRqFT7YON4dOZygF_fV3m5RpVfcXwtE8QU4kC9-GVYBPlw"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-sm font-semibold truncate">Kovács Péter</p>
+<p class="text-xs text-slate-400 truncate">Szuperadmin</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-lg">logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto flex flex-col">
+<!-- Top Bar -->
+<header class="h-16 bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-2 text-sm text-slate-500 dark:text-zinc-400">
+<a class="hover:text-primary transition-colors" href="#">Admin</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-secondary dark:text-slate-100 font-medium">Rendelések</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-slate-100 dark:bg-zinc-800 border-none rounded text-sm w-64 focus:ring-1 focus:ring-primary transition-all" placeholder="Keresés..." type="text"/>
+</div>
+<button class="relative p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full border-2 border-white"></span>
+</button>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 max-w-7xl w-full mx-auto">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-4xl font-black text-secondary dark:text-slate-100 mb-2">Rendelések Kezelése</h2>
+<p class="text-slate-500 dark:text-zinc-400 font-body">Központi vezérlőpult a beérkező és folyamatban lévő megrendelésekhez.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded font-medium text-sm hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-lg">file_download</span>
+                            Exportálás
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded font-medium text-sm hover:bg-primary/90 transition-shadow shadow-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+                            Új rendelés
+                        </button>
+</div>
+</div>
+<!-- Stats Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white dark:bg-zinc-900 p-6 rounded shadow-sm border border-slate-100 dark:border-zinc-800">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Összesített bevétel</p>
+<h3 class="text-2xl font-black text-secondary dark:text-primary">2.840.000 Ft</h3>
+<p class="text-xs text-green-600 mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+                            +12% az előző hónaphoz képest
+                        </p>
+</div>
+<div class="bg-white dark:bg-zinc-900 p-6 rounded shadow-sm border border-slate-100 dark:border-zinc-800">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Nyitott rendelések</p>
+<h3 class="text-2xl font-black text-secondary dark:text-primary">24 db</h3>
+<p class="text-xs text-slate-400 mt-2 italic">Azonnali figyelmet igényel: 5 db</p>
+</div>
+<div class="bg-white dark:bg-zinc-900 p-6 rounded shadow-sm border border-slate-100 dark:border-zinc-800">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Átlagos rendelési érték</p>
+<h3 class="text-2xl font-black text-secondary dark:text-primary">118.500 Ft</h3>
+<p class="text-xs text-primary mt-2 font-medium">Prémium kategória népszerű</p>
+</div>
+</div>
+<!-- Orders Data Table -->
+<div class="bg-white dark:bg-zinc-900 rounded shadow-sm border border-slate-100 dark:border-zinc-800 overflow-hidden">
+<div class="p-4 border-b border-slate-100 dark:border-zinc-800 flex justify-between items-center bg-slate-50/50 dark:bg-zinc-800/20">
+<div class="flex gap-4">
+<select class="text-sm bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-700 rounded py-1 pl-3 pr-8 focus:ring-primary">
+<option>Összes állapot</option>
+<option>Teljesítve</option>
+<option>Feldolgozás alatt</option>
+<option>Kiszállítás alatt</option>
+</select>
+<select class="text-sm bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-700 rounded py-1 pl-3 pr-8 focus:ring-primary">
+<option>Utolsó 30 nap</option>
+<option>Ma</option>
+<option>Ezen a héten</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-zinc-800/50">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Rendelés ID</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Vásárló Neve</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Dátum</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Összeg (HUF)</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Állapot</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider text-right">Műveletek</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-zinc-800">
+<tr class="hover:bg-slate-50/80 dark:hover:bg-zinc-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-mono text-secondary dark:text-primary/90">#FS-8291</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold text-xs">KA</div>
+<span class="text-sm font-semibold">Kovács Adél</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-zinc-400">2023.10.24.</td>
+<td class="px-6 py-4 text-sm font-bold">450.000 Ft</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            Teljesítve
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors ml-3">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 dark:hover:bg-zinc-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-mono text-secondary dark:text-primary/90">#FS-8292</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-secondary/20 rounded-full flex items-center justify-center text-secondary font-bold text-xs">NM</div>
+<span class="text-sm font-semibold">Nagy Márk</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-zinc-400">2023.10.25.</td>
+<td class="px-6 py-4 text-sm font-bold">120.500 Ft</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+                                            Feldolgozás alatt
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors ml-3">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 dark:hover:bg-zinc-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-mono text-secondary dark:text-primary/90">#FS-8293</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold text-xs">SE</div>
+<span class="text-sm font-semibold">Szabó Elena</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-zinc-400">2023.10.25.</td>
+<td class="px-6 py-4 text-sm font-bold">89.900 Ft</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
+                                            Kiszállítás alatt
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors ml-3">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 dark:hover:bg-zinc-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-mono text-secondary dark:text-primary/90">#FS-8294</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-secondary/20 rounded-full flex items-center justify-center text-secondary font-bold text-xs">TG</div>
+<span class="text-sm font-semibold">Tóth Gábor</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-zinc-400">2023.10.26.</td>
+<td class="px-6 py-4 text-sm font-bold">210.000 Ft</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            Teljesítve
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors ml-3">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 dark:hover:bg-zinc-800/30 transition-colors">
+<td class="px-6 py-4 text-sm font-mono text-secondary dark:text-primary/90">#FS-8295</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold text-xs">VP</div>
+<span class="text-sm font-semibold">Varga Petra</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-zinc-400">2023.10.26.</td>
+<td class="px-6 py-4 text-sm font-bold">340.000 Ft</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+                                            Feldolgozás alatt
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit_note</span>
+</button>
+<button class="text-secondary dark:text-zinc-400 hover:text-primary transition-colors ml-3">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50 dark:bg-zinc-800/50 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between">
+<p class="text-xs text-slate-500">Mutatva 1 - 5 / 128 találat</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded text-xs font-medium hover:bg-slate-50 disabled:opacity-50" disabled="">Vissza</button>
+<button class="px-3 py-1 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded text-xs font-medium hover:bg-slate-50">1</button>
+<button class="px-3 py-1 bg-primary text-white border border-primary rounded text-xs font-medium">2</button>
+<button class="px-3 py-1 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded text-xs font-medium hover:bg-slate-50">3</button>
+<button class="px-3 py-1 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700 rounded text-xs font-medium hover:bg-slate-50">Előre</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

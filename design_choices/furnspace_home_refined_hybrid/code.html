@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FurnSpace | Refined Luxury &amp; Organic Elegance</title>
+<meta content="Elevating the modern living space through intentional design and refined materials." name="description"/>
+<!-- Fonts: Playfair Display for Headings, Inter for Body -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              whiteSmoke: 'hsl(60, 2%, 96%)',
+              chocolate: 'hsl(30, 80%, 35%)',
+              almond: 'hsl(31, 32%, 82%)',
+              copper: 'hsl(30, 43%, 50%)',
+              darker: '#1a1410',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.8s ease-out forwards',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-transitions">
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    
+    .hover-scale {
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hover-scale:hover {
+      transform: scale(1.02);
+    }
+
+    .glass-nav {
+      background: rgba(245, 245, 243, 0.8);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="bg-brand-whiteSmoke text-brand-darker font-sans selection:bg-brand-almond selection:text-brand-chocolate">
+<!-- BEGIN: MainHeader -->
+<header class="fixed top-0 w-full z-50 glass-nav border-b border-black/5" data-purpose="sticky-navigation">
+<nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<!-- Logo -->
+<div class="flex-shrink-0">
+<a class="text-2xl font-serif tracking-widest uppercase flex items-center gap-2" href="#">
+<span class="w-2 h-8 bg-brand-chocolate inline-block"></span>
+          FurnSpace
+        </a>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide uppercase">
+<a class="hover:text-brand-copper transition-colors" href="#">Collections</a>
+<a class="hover:text-brand-copper transition-colors" href="#">Living</a>
+<a class="hover:text-brand-copper transition-colors" href="#">Dining</a>
+<a class="hover:text-brand-copper transition-colors" href="#">Editorial</a>
+</div>
+<!-- Utility Icons -->
+<div class="flex items-center space-x-6">
+<button aria-label="Search" class="hover:text-brand-copper transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button aria-label="Cart" class="relative hover:text-brand-copper transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<span class="absolute -top-1 -right-2 bg-brand-copper text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+</button>
+<button aria-label="Profile" class="hover:text-brand-copper transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+</div>
+</nav>
+</header>
+<!-- END: MainHeader -->
+<main class="pt-20">
+<!-- BEGIN: HeroSection -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden" data-purpose="hero-banner">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Text Content -->
+<div class="lg:col-span-5 z-10 animate-fade-up">
+<span class="uppercase tracking-[0.3em] text-xs font-semibold text-brand-copper mb-4 block">Spring Collection 2024</span>
+<h1 class="text-6xl md:text-8xl font-serif leading-tight mb-8">
+            The Art <br/> of <i class="font-normal text-brand-copper">Living</i>
+</h1>
+<p class="text-lg text-gray-600 mb-10 max-w-md leading-relaxed">
+            Experience the warmth of Almond Cream tones and fluid silhouettes in our new curated collection of artisanal home essentials.
+          </p>
+<div class="flex gap-4">
+<a class="bg-brand-chocolate text-white px-8 py-4 uppercase text-xs tracking-widest font-semibold hover:bg-brand-darker transition-colors" href="#">Shop Collection</a>
+<a class="border border-brand-chocolate text-brand-chocolate px-8 py-4 uppercase text-xs tracking-widest font-semibold hover:bg-brand-chocolate hover:text-white transition-all" href="#">View Lookbook</a>
+</div>
+</div>
+<!-- Asymmetric Image Grid -->
+<div class="lg:col-span-7 relative animate-fade-up stagger-1">
+<div class="relative rounded-t-[10rem] overflow-hidden aspect-[4/5] shadow-2xl">
+<img alt="Main Hero Sofa" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWLcS3G7sgTPiV2nhv_psuAgBqJF7GMBXtb-Fc4-5AoEifOmL2PIQ1GAGsg7jTK7dESIZabam0q46ag7tkx4tOz1Y15q5NZNqk1or0refC4FD8Fl-cIp0i6gsNLNYqhBk-37W9OdIXd-jTMNP2J6bFcE9Wa60ZREedGr2SMxrS0hdC-IBOqHwOmjIt_7CHkmM66fGQL8XsqBVGSZj99jYjnbzmkSENFAAByk0sp33fEFuzErmMSukdTKzjKrZRiCj_mdEY5KBgSmNG"/>
+<!-- Floating Detail Card -->
+<div class="absolute bottom-10 left-[-5%] bg-white p-6 shadow-xl max-w-xs hidden md:block">
+<span class="text-[10px] uppercase tracking-widest text-brand-copper font-bold">Featured Item</span>
+<h3 class="font-serif text-xl mt-1">Arc Armchair</h3>
+<p class="text-brand-chocolate font-bold mt-2">$890</p>
+</div>
+</div>
+<!-- Secondary Decorative Overlay -->
+<div class="absolute -bottom-12 -right-12 w-2/3 h-2/3 bg-brand-almond/30 -z-10 rounded-full blur-3xl"></div>
+<div class="absolute top-1/2 -right-4 w-48 h-48 bg-brand-copper/10 rounded-full -z-10"></div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: FeaturedCollection -->
+<section class="py-32 bg-white" data-purpose="product-grid">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-4xl font-serif">The Masterpieces</h2>
+<p class="text-gray-500 mt-2 uppercase tracking-widest text-xs">Curated Selects / Vol 01</p>
+</div>
+<a class="text-sm font-semibold border-b-2 border-brand-copper pb-1 hover:text-brand-copper transition-colors" href="#">VIEW ALL COLLECTION</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Product Card 1 -->
+<article class="group animate-fade-up stagger-1">
+<div class="relative aspect-[3/4] overflow-hidden bg-brand-whiteSmoke mb-6">
+<span class="absolute top-4 left-4 z-10 bg-brand-copper text-white text-[10px] px-3 py-1 font-bold uppercase tracking-wider">Új</span>
+<img alt="Marceau Lounge" class="w-full h-full object-cover hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp52YVr1VksuS-Y2a0sebL96kQeaXZRE_LRcyJZrVgw3uXPFkjeJgv7cqs8z7smq6BSu-5B0UfpvbJFTffvaFNI5Mec24W-NQk77CgveSl-vsfBq3EkBewUAX4LfRzcaqnIq3EnBdrV85CyncPDPCY-ifen6vyR0sBzonN4JchSpPoc2su15HxPVITAKWt8mNP6uCjm1HTvq545tWxtXQK-dbt9MSe-Ppu9TsAU_Zn5J-1rW_L3ukVT6AxMxTSQgb9KYBZ9WffXg6d"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-serif">Marceau Lounge</h3>
+<p class="text-[10px] uppercase tracking-widest text-brand-copper font-bold mt-1">Chocolate Leather</p>
+</div>
+<span class="text-brand-chocolate font-bold">$2,400</span>
+</div>
+</article>
+<!-- Product Card 2 -->
+<article class="group animate-fade-up stagger-2">
+<div class="relative aspect-[3/4] overflow-hidden bg-brand-whiteSmoke mb-6">
+<img alt="Ignis Coffee Table" class="w-full h-full object-cover hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-aKeRMa7DJo2DVokyrrM_NzuAxYExTQk1QZcOsiZGTb6B3YKA3nmZcYSUdDhFZaWWw2oJs9imoJcvgALk223WMR0QtKTv3ivERb8LwSTX2Vmuw2HzVRce9_qgaautT8I24Jl4Mh0f8G4fB2Goqtbs022-SAvSYH8qGu5V8Rf_4QNlimqYvIJrql5ay8zi8ey7amdFEqjQ5Oo2IemEDixXxTk5XktzYMExZpaexGyvTL4Uybb5GIcInGDxp7f8jjrwNu0D7fJ53Se0"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-serif">Ignis Coffee Table</h3>
+<p class="text-[10px] uppercase tracking-widest text-brand-copper font-bold mt-1">Copper &amp; Smoked Oak</p>
+</div>
+<span class="text-brand-chocolate font-bold">$1,850</span>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="group animate-fade-up stagger-3">
+<div class="relative aspect-[3/4] overflow-hidden bg-brand-whiteSmoke mb-6">
+<img alt="Aurelia Pendant" class="w-full h-full object-cover hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3zDJSH0NDMi8_UKv70Eej1_ZbG0YSAa4Q4DzT3N-BHoaB_JdGTEmTMFDhsS689dYXMjG1NAesJrgKapUP4HiiiG3ZfhE-AjsoBmLgLBD7L7UEiDGoenApPhhgDk1Xkf5r_sVs6MTI4UobFE_3dGVit-ch3Yv3Tkx6iig0xHp2dY2MNm-3ggfzHM7H8uJe0psA3kGGr6Dc4OvXxqNKcOOvKJpbrF5QInlY3ut_QpTf2mgSw6yHAd1hgrDadQgCsfl81178XYecY1OA"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-serif">Aurelia Pendant</h3>
+<p class="text-[10px] uppercase tracking-widest text-brand-copper font-bold mt-1">Aged Copper</p>
+</div>
+<span class="text-brand-chocolate font-bold">$920</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- END: FeaturedCollection -->
+<!-- BEGIN: Philosophy -->
+<section class="py-32 bg-brand-darker text-white text-center relative overflow-hidden" data-purpose="editorial-statement">
+<!-- Decorative Element -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-brand-copper/50"></div>
+<div class="max-w-4xl mx-auto px-6 relative z-10">
+<span class="uppercase tracking-[0.4em] text-[10px] text-brand-copper font-bold mb-8 block">The Philosophy</span>
+<blockquote class="text-4xl md:text-6xl font-serif leading-tight italic">
+          "Extreme minimalism <br/> meets editorial <span class="text-brand-almond">grandeur</span>."
+        </blockquote>
+<div class="mt-12 text-brand-almond/60 tracking-widest uppercase text-xs">Founded in excellence. Defined by space.</div>
+</div>
+<!-- Subtle Background Glow -->
+<div class="absolute bottom-[-20%] left-[-10%] w-96 h-96 bg-brand-chocolate/20 rounded-full blur-[100px]"></div>
+</section>
+<!-- END: Philosophy -->
+<!-- BEGIN: CategoryGrid -->
+<section class="py-32" data-purpose="curated-categories">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-center mb-16">
+<h2 class="text-4xl font-serif">The Curated Edit</h2>
+<a class="group flex items-center gap-2 text-sm font-semibold" href="#">
+            Explore all categories 
+            <svg class="w-4 h-4 text-brand-copper transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[700px]">
+<!-- Large Featured Category -->
+<div class="lg:col-span-8 relative group overflow-hidden rounded-2xl bg-brand-chocolate">
+<img alt="Textural Forms" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcrOu_U9q7-VdcXtxIIkJTItQ6cKPqrm5Of9C6NCtW8VrifcaKJwKfNeMQvzLO21uaUf69D7Oa7Suvve1GdQKhoik_Iv9_xDjwY7cM66JbL3-98rN05pMjWkzHsbwvCmgR4ZBwXKBdlXYg5kTp_vjERVs9GiBFYYVOLN4X-V5iG9rr0u8luuTfePObIiztIC5u17_LqdwRsWPnRVyjQOWouyQfpKdY35BRLvImJ_3t1p-uKUXN2YgYT--C7ploB9br1vpU5vLAzVG1"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<h3 class="text-3xl font-serif mb-2">Textural Forms</h3>
+<p class="text-sm opacity-80 max-w-xs leading-relaxed">Sculptural lighting and objects that redefine space with light and shadow.</p>
+</div>
+</div>
+<!-- Stacked Smaller Categories -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="h-1/2 relative group overflow-hidden rounded-2xl bg-brand-almond">
+<img alt="Natural Oak" class="w-full h-full object-cover hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvT88jhc-YcMA5dMClq57CmVHAwCNSaMn22aFF5NMN6SDcOhp1vNsn1IBgPleuDukBGowhP08C91TZvL3V6zUeJw2Sih5rZcbfxBHLmMV2wNa6WgoVIX0Pg7OJxgeWlcWHvIzVJnRlszOMgZm97I29_UUPFaY3g8QQwDZc8msh7DQDMDZaK77iq510tFb6V1CCJ4-194bru5V0fZr3bEO6OqMYKVGQP3EQT9gRKeYabn6flasE9SdgaxqDnSuaRrFvZfmYbxFc_Vvu"/>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-serif">Natural Oak</h3>
+</div>
+</div>
+<div class="h-1/2 relative group overflow-hidden rounded-2xl bg-brand-whiteSmoke">
+<img alt="Soft Minimalist" class="w-full h-full object-cover hover-scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkkMDQ5wOjt1WpAz4AssDGQTN5bIdmXK-U6hCPSMETJr6OGYstVUSmj8kuvwfSAWF3AQKOUk0L0UW-abZOqful7jl1RkohzE6rVn2krJ7qg4Rm8kZJb4ctgJ4giaFUfY6p9TPP-RPETXT-IJAMJ-zz-HKMCXd_YQZmQNWGsNLhXHyQNdmbiAwbp6dp617wRUm02jGZ4zDwBXuP_eKyCa89u5KIELY0s_-1WlwwB6DLBxY-6dj-3yTsgkxg_Clmz-cAsQPuWsF6sOEG"/>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-serif">Soft Minimalist</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CategoryGrid -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-brand-whiteSmoke pt-24 pb-12 border-t border-black/5" data-purpose="main-footer">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+<!-- Brand Info -->
+<div class="space-y-6">
+<a class="text-xl font-serif tracking-widest uppercase flex items-center gap-2" href="#">
+<span class="w-1.5 h-6 bg-brand-chocolate inline-block"></span>
+            FurnSpace
+          </a>
+<p class="text-sm text-gray-500 leading-relaxed">
+            Redefining modern living with organic forms and artisanal craftsmanship since 2012.
+          </p>
+<div class="flex space-x-4 pt-4">
+<a class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center hover:bg-brand-chocolate hover:text-white transition-all" href="#">
+<span class="sr-only">Instagram</span>
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center hover:bg-brand-chocolate hover:text-white transition-all" href="#">
+<span class="sr-only">Pinterest</span>
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.261 7.929-7.261 4.162 0 7.398 2.967 7.398 6.93 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"></path></svg>
+</a>
+</div>
+</div>
+<!-- Links Column 1 -->
+<div>
+<h4 class="text-xs uppercase tracking-[0.2em] font-bold mb-6">Discover</h4>
+<ul class="space-y-4 text-sm text-gray-500">
+<li><a class="hover:text-brand-chocolate transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-brand-chocolate transition-colors" href="#">Craftsmanship</a></li>
+<li><a class="hover:text-brand-chocolate transition-colors" href="#">Store Locator</a></li>
+<li><a class="hover:text-brand-chocolate transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<!-- Links Column 2 -->
+<div>
+<h4 class="text-xs uppercase tracking-[0.2em] font-bold mb-6">Customer Care</h4>
+<ul class="space-y-4 text-sm text-gray-500">
+<li><a class="hover:text-brand-chocolate transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-brand-chocolate transition-colors" href="#">Care Guide</a></li>
+<li><a class="hover:text-brand-chocolate transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-brand-chocolate transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h4 class="text-xs uppercase tracking-[0.2em] font-bold mb-6">Newsletter</h4>
+<p class="text-sm text-gray-500 mb-6">Subscribe for seasonal lookbooks and early access to new collections.</p>
+<form class="relative">
+<input class="w-full bg-white border-black/10 py-3 px-4 text-sm focus:ring-brand-copper focus:border-brand-copper transition-all" placeholder="Your email address" type="email"/>
+<button class="absolute right-0 top-0 h-full px-6 bg-brand-chocolate text-white text-xs font-bold uppercase tracking-widest hover:bg-brand-darker transition-colors" type="submit">Join</button>
+</form>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-400 uppercase tracking-widest gap-4">
+<p>© 2024 FURNSPACE EDITORIAL. ALL RIGHTS RESERVED.</p>
+<div class="flex space-x-8">
+<a class="hover:text-brand-chocolate" href="#">Privacy Policy</a>
+<a class="hover:text-brand-chocolate" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+<script data-purpose="interaction-scripts">
+    // Intersection Observer for fade-up animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-fade-up').forEach(el => {
+      // Elements are already hidden or waiting for animation
+      observer.observe(el);
+    });
+  </script>
+</body></html>

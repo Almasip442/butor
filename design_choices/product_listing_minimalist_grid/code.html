@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Inter:wght@300;400;500;600&amp;family=Public+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8b4513", // Chocolate Brown base
+                        "accent": "#b87333",  // Copper
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .logo-font { font-family: 'Playfair Display', serif; }
+        .product-card:hover .cart-button { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">chair</span>
+<h1 class="text-2xl font-bold tracking-tight logo-font">FurnSpace</h1>
+</div>
+<!-- Navigation -->
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Living</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dining</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Bedroom</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Workspace</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-5">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-full text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none w-48 transition-all focus:w-64" placeholder="Keresés..." type="text"/>
+</div>
+<button class="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Sidebar (Filters) -->
+<aside class="w-full lg:w-64 shrink-0">
+<div class="sticky top-32 space-y-10">
+<div>
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Kategória</h3>
+<select class="w-full bg-transparent border-b border-slate-200 dark:border-slate-800 border-x-0 border-t-0 py-2 px-0 focus:ring-0 focus:border-primary cursor-pointer">
+<option>Összes bútor</option>
+<option>Kanapék</option>
+<option>Étkezőasztalok</option>
+<option>Fotelek</option>
+<option>Ágykeretek</option>
+</select>
+</div>
+<div>
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Ár (HUF)</h3>
+<div class="px-2">
+<input class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary" max="1500000" min="50000" type="range"/>
+<div class="flex justify-between mt-4 text-sm text-slate-600 dark:text-slate-400">
+<span>50.000 Ft</span>
+<span>1.500.000 Ft</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Anyag</h3>
+<div class="space-y-4">
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Tölgyfa</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Szövet</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Bőr</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Fém</span>
+</label>
+</div>
+</div>
+<div class="pt-6">
+<button class="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">close</span>
+                            Szűrők törlése
+                        </button>
+</div>
+</div>
+</aside>
+<!-- Product Grid Section -->
+<div class="flex-1">
+<!-- Top Bar -->
+<div class="flex items-end justify-between mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
+<div>
+<h2 class="text-4xl font-serif mb-2">Nappali Bútorok</h2>
+<p class="text-slate-500 text-sm">24 darab prémium termék</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold uppercase tracking-tighter text-slate-400">Rendezés:</span>
+<select class="bg-transparent border-none text-sm font-semibold focus:ring-0 cursor-pointer">
+<option>Legújabbak</option>
+<option>Ár szerint növekvő</option>
+<option>Ár szerint csökkenő</option>
+<option>Népszerűség</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-14">
+<!-- Product Card 1 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] overflow-hidden bg-white rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Modern minimalista bársony fotel réz lábakkal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaYFHpw0ePhOy65ee3Qap7rfa1QlaNskGvdmfqF9EfNUd2YBrZlGJXzqNjbKTGMd-FKo17UIvUY-hfCSR391ANfSVLuoNpsy5FNFnI7jgh-2jcuCZpvWttRTv1ODhjbt6HOU0zpnmuVDXvlNRlb8apyHyZe5jInEmb6XF5aVZozKeeHKLxKu5XEv5sMbzfJRE6sSAL-vfcTPV3oHpA7uhqdXVRVk1URtbrj5mTwzNEhT_qGVu5qjdSBTZGiUcDUKz1oU9pSCak2sA"/>
+<div class="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Új</div>
+<div class="cart-button absolute inset-x-4 bottom-4 opacity-0 translate-y-4 transition-all duration-300">
+<button class="w-full bg-primary text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest shadow-2xl hover:bg-primary/90">Kosárba</button>
+</div>
+</div>
+<div class="mt-6 text-center">
+<h3 class="text-lg font-medium text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Aurelius Bársony Fotel</h3>
+<p class="mt-2 text-primary font-semibold tracking-tight">425.000 HUF</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] overflow-hidden bg-white rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Luxus zöld bársony kanapé arany díszítéssel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdU11KZdN7f1RN8FrEi7C3k5sOUpaqSbq-z4GwEJs4KFd78nVMa50KXasYp9cA-6bMyoowAmKcH9VK8JpQQ93fKDBq6WuMjtIIXmqykBI7f2GdL_RdLyxR9zdseVWQgSYAqum5OWcyf4vZr1VDNAMMRkcwHUxB8tOXl-TdaN_oWMEDJ2AnJBb_7uYVYNJYC9k1uiy4ktj7q81_Fh9JoT8nkP5ffgYOWuDMpBApzupsBzY43-ruIoOxehP_3DEVaKLWpevL-IM6qQo"/>
+<div class="cart-button absolute inset-x-4 bottom-4 opacity-0 translate-y-4 transition-all duration-300">
+<button class="w-full bg-primary text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest shadow-2xl hover:bg-primary/90">Kosárba</button>
+</div>
+</div>
+<div class="mt-6 text-center">
+<h3 class="text-lg font-medium text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Emerald Grand Kanapé</h3>
+<p class="mt-2 text-primary font-semibold tracking-tight">1.280.000 HUF</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] overflow-hidden bg-white rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Kézzel készült tölgyfa kávézóasztal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF90oQbsuy2wTvybYaR5OaOi5W6fA3O3Yax6sRl_1ETAxuSdJ-ju9qlLOJaEhOERIVbv7mXNXOpSRjyFjShzmGQO9AZSbgS96kNDOWPaWrf9-tmFBGWhGmd-Fa2RfBLXDRpFp6E0xyDSxCt_yrMifIkkQTujt92unMf0aBnBWPDWhrO6iqrr5Vwy7Tnd86f2Cvfo_J3o66gC8abo7mxAdTmmcpQsh9IOGBGwObb-AAfZYMs2NiLyBnEAXNpt9w6vsZjPPGUr7RWMg"/>
+<div class="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Új</div>
+<div class="cart-button absolute inset-x-4 bottom-4 opacity-0 translate-y-4 transition-all duration-300">
+<button class="w-full bg-primary text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest shadow-2xl hover:bg-primary/90">Kosárba</button>
+</div>
+</div>
+<div class="mt-6 text-center">
+<h3 class="text-lg font-medium text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Nordic Tölgy Asztal</h3>
+<p class="mt-2 text-primary font-semibold tracking-tight">215.000 HUF</p>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] overflow-hidden bg-white rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Organikus vonalvezetésű designer szék" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3LpGCtLVUAIRCLVtgEnL4cfZu9jjYvd9xsnBJHcLDNuUrJrDrdsc5n3LX1mwAH46BtwpqfYLf_b6vMfqR79-tWtribbkvLzK_9N0gCPeLo-sBEFKFJkkh-J3FuW4l_j7wWdcYgriiEN_DXZLetximKyXE3EN5fM6g33H6Zu_5gerDp4r72ihiH63btsMMNofpL6QAoCE39L8PRARHX94S5cFveWudR2ejFW6Do_OOYil9IDjKYqc-0JsP78B9bzj-PPkwI8zMdoU"/>
+<div class="cart-button absolute inset-x-4 bottom-4 opacity-0 translate-y-4 transition-all duration-300">
+<button class="w-full bg-primary text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest shadow-2xl hover:bg-primary/90">Kosárba</button>
+</div>
+</div>
+<div class="mt-6 text-center">
+<h3 class="text-lg font-medium text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Curve Design Szék</h3>
+<p class="mt-2 text-primary font-semibold tracking-tight">189.000 HUF</p>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] overflow-hidden bg-white rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Modern komód sötét fából és márványból" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOVBVa2ncoQSSQdvWCeKnlfzSfWKMa-ZMhmHskE1AH6n7HcqpnupxjyKSwWbOI64PGW2KQIGIkCzDUv1VcdaNsQjlS4MfCLBy1TR4HPL-Xu6_BdAcpp1Tjmn6YwSulrzZIKBD0ry_0mhKgu3eYVhmKm8E7FfEQFTZRPLHq_gugPoY_6kuy8AnOGsmwPr6UtkDT9ouBY51BHc_U1npanvNTjUP6eH1YlJN67yFCJD0qnI0oyFBxQaFdrbQCnpuZGwomPn4fedB32sg"/>
+<div class="cart-button absolute inset-x-4 bottom-4 opacity-0 translate-y-4 transition-all duration-300">
+<button class="w-full bg-primary text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest shadow-2xl hover:bg-primary/90">Kosárba</button>
+</div>
+</div>
+<div class="mt-6 text-center">
+<h3 class="text-lg font-medium text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Marble Top Komód</h3>
+<p class="mt-2 text-primary font-semibold tracking-tight">560.000 HUF</p>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] overflow-hidden bg-white rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Elegáns nappali állólámpa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlg_kzKZl48Bhu7ObTHOVDcdaxjqshlau9NN9PxwxjdkbUahjrGPHaiFf6Q6hwbA9jirnhtnX4TbvOlB8tmiBlPNHg3dhutR3c-KYVc5A_fB5CKxu4ChA9kXksyAbN79b0aTYTfojcv_UMz0WGfmzRtN2_ojpSirhcXNRXrvieeUDnUN5frWeulV9z6L3K0kQ1y_GeFRxERpMaRRDo8dJJ16mz4fsQqn86GhyO5G3QtbJfyo2_S4Z25SOA0GzMOBTC_gdeiefv3_A"/>
+<div class="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">Új</div>
+<div class="cart-button absolute inset-x-4 bottom-4 opacity-0 translate-y-4 transition-all duration-300">
+<button class="w-full bg-primary text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest shadow-2xl hover:bg-primary/90">Kosárba</button>
+</div>
+</div>
+<div class="mt-6 text-center">
+<h3 class="text-lg font-medium text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Brass Horizon Lámpa</h3>
+<p class="mt-2 text-primary font-semibold tracking-tight">142.000 HUF</p>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-20 flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200 transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200 transition-colors">3</button>
+<span class="px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200 transition-colors">8</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-16 mt-20">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-2">
+<h2 class="text-2xl font-bold logo-font mb-6">FurnSpace</h2>
+<p class="text-slate-500 max-w-sm leading-relaxed">Prémium minőségű, fenntartható forrásból származó anyagokból készült bútorok azoknak, akik értékelik az időtlen eleganciát.</p>
+<div class="mt-8 flex gap-4">
+<a class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-lg">public</span></a>
+<a class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-lg">share</span></a>
+<a class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-lg">camera</span></a>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Vásárlás</h4>
+<ul class="space-y-4 text-sm font-medium">
+<li><a class="hover:text-primary" href="#">Szállítási információk</a></li>
+<li><a class="hover:text-primary" href="#">Visszaküldés</a></li>
+<li><a class="hover:text-primary" href="#">Törzsvásárlói program</a></li>
+<li><a class="hover:text-primary" href="#">Üzletkereső</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Hírlevél</h4>
+<p class="text-sm text-slate-500 mb-4">Iratkozzon fel exkluzív ajánlatainkra.</p>
+<div class="flex gap-2">
+<input class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-2 text-sm w-full outline-none focus:ring-1 focus:ring-primary" placeholder="Email cím" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold">Mehet</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-slate-100 dark:border-slate-900 text-center text-xs text-slate-400">
+            © 2024 FurnSpace Luxury Furniture. Minden jog fenntartva.
+        </div>
+</footer>
+</body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "chocolate": "#3d1c02",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+        .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo -->
+<div class="flex items-center gap-2 group cursor-pointer">
+<div class="bg-primary p-1.5 rounded">
+<svg class="w-6 h-6 text-white" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-2xl font-bold tracking-tight text-chocolate dark:text-primary">FurnSpace</h1>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Nappali</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Hálószoba</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Étkező</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Iroda</a>
+</nav>
+<!-- Search & Icons -->
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Keresés..." type="text"/>
+</div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- Breadcrumb -->
+<nav class="flex mb-8 text-sm text-slate-500 gap-2 items-center">
+<a class="hover:text-primary" href="#">Kezdőlap</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary" href="#">Bútorok</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-100 font-medium">Nappali</span>
+</nav>
+<!-- Product Hero Section -->
+<div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+<!-- Left: Gallery -->
+<div class="flex-1 space-y-4">
+<div class="aspect-[4/5] w-full bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden group">
+<div class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="Luxury velvet armchair in a modern living room setting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5C2j8EQQ5rz-u7u5iJgZWss1AeJs_0BFicOpCapKL5amLOmH2a4XjCu-gcyVuwuiu0sXYv-MgKsf02h_aeowqnUp_nm0UCShmBUwNhz-_NokKDgq4JsIClYuI6cMw8_1HSIQK3IZCbTH5nm-udAC1lIn4YxJ--a3ewGKVXmFC3NcFoXk54Hm13bSucDZl4ujc4RM6TTMrmviVR3ozJ54I4TXFpPgRTd6VyiQY6v1UcxUp74jeyiIMMu-aFUK-6SbX1zmmrWpR1mU");'>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg border-2 border-primary overflow-hidden cursor-pointer">
+<div class="w-full h-full bg-center bg-cover" data-alt="Detail shot of velvet armchair texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5jaslCz5Kcwc-Dxp2uCDOfsShIcLNheOIt6vDt6K4vFJh4OYqD6duStizwtBl5K_QPNWarQLRXqQkjn7I66Rr6ddBXmtzkxClfB7BVtkKFEYnftRpisUv6M_4m_s6L8r_T6KYSC2C4XlrOOxRkc4vUG7AMHWlZoDFCw8xUnSJ-SuTRqqIW6_bP589dOZjbQBXzjKJ6nC9vHE2zodzcoeTFcmR95zUygCQI0fEJLJ1GsFywA41fvCGrrlZeuei2Z4XkmdhFlyFrg8");'></div>
+</div>
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg border border-transparent hover:border-primary overflow-hidden cursor-pointer">
+<div class="w-full h-full bg-center bg-cover" data-alt="Side view of the luxury armchair" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYcAviX4yIglA3OtLzRBAipWoVbmFtvi8cXliaxDio0_JByKdXF9xiQZMsmtUqzlUoVE-MGol3le59yp2sOyQL3e0Qzu1RpfkP2fhdsXSN2p-9nkvOL7bKPkokUipwxTDJsMXhxa8kHT64NnT6OlHCj2rtbG8PlZPLH2gg8BfwqiqdlTC4hpJHFabfZWK75bBXl4kMw2bLmZ9J2wSD2Lgm6rek0Wsn9kg4N3GQruqPmER6f5zAzdz-7qKlH-c6XDQ8tzWd1s8EmQM");'></div>
+</div>
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg border border-transparent hover:border-primary overflow-hidden cursor-pointer">
+<div class="w-full h-full bg-center bg-cover" data-alt="Solid oak leg construction detail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMb5cGz22td9uIAAVxr3HWfgn4JVBtR07rdGWr2HvyLey38sNmxQXfPNlZkekLWZSzpHLOBHWiHroKHrs5PJAJPt-yxnzj7Yaxi0tRywA19jyoBP9GpUeg2PaZg_XDu_upexVTwiLl2ZuKvocCb9WZ4GOA_HLw2kouA37E-zkTTQbgmDcGgA80TWS95qJONSGxHzGqHKqVAPlePt-a39whJ3f90lX0rGZY1BoQN7udUFMesmQw9j0feniD5h8HdTd8uKctGNgvoaM");'></div>
+</div>
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg border border-transparent hover:border-primary overflow-hidden cursor-pointer">
+<div class="w-full h-full bg-center bg-cover" data-alt="Armchair in a minimalist room interior" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYlc9u3ynuBQG5PMsi5pf8djCkbqAvJuDb4utPCWPq7DD7ouDvs2UQcUHGSBbiKAdX7-iBd6GzXYXvFzQzPE1qW_TqogwCz15vDvOlwGqQ-ODWyFHHZw-17W-JdYgKB7RC75eTWuveE77MuTcIlxkPDNe5HBlH8xzUIztnF5FqTGx9AfHzB3-d8SBBv0gKnIPs5nbSsTbvnthvSnY3qCPxBZ8cj517OgIfUukIVmeT5ODI7H_7qEMCB3iItRLpHU3hAqgmA8Rerck");'></div>
+</div>
+</div>
+</div>
+<!-- Right: Product Info -->
+<div class="flex-1 flex flex-col">
+<div class="mb-4">
+<span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest rounded-full mb-4">Nappali</span>
+<h2 class="serif-font text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-2">Aurelius Bársony Fotel</h2>
+<p class="text-chocolate dark:text-primary text-3xl font-semibold mb-6">425.000 HUF</p>
+</div>
+<!-- Stock Status -->
+<div class="flex items-center gap-2 mb-8 text-sm">
+<span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+<span class="text-slate-600 dark:text-slate-400">Készleten: <span class="font-bold text-slate-900 dark:text-slate-100">4 darab</span></span>
+</div>
+<!-- Specs Grid -->
+<div class="grid grid-cols-2 gap-4 mb-8 p-4 bg-slate-50 dark:bg-white/5 rounded-lg border border-slate-200 dark:border-slate-800">
+<div>
+<p class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">Méretek</p>
+<p class="text-sm font-medium">85 x 90 x 105 cm</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">Anyag</p>
+<p class="text-sm font-medium">Olasz Bársony, Tölgyfa</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">Szín</p>
+<p class="text-sm font-medium">Mély Smaragd</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">Garancia</p>
+<p class="text-sm font-medium">5 Év Prémium</p>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-4 mb-10">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">A kézművességről</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Az Aurelius fotel a kortárs elegancia és a hagyományos kézművesség tökéletes találkozása. Minden darab válogatott olasz bársonnyal van kárpitozva, melynek lágy tapintása és gazdag színe mélységet visz bármely élettérbe. A vázszerkezetet kézzel megmunkált tömör tölgyfa alkotja, biztosítva a generációkon átívelő tartósságot és a stabil kényelmet. 
+                    </p>
+</div>
+<!-- Actions -->
+<div class="mt-auto flex flex-col sm:flex-row gap-4">
+<div class="flex items-center border border-slate-300 dark:border-slate-700 rounded-lg overflow-hidden bg-white dark:bg-transparent">
+<button class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<input class="w-12 border-none bg-transparent text-center focus:ring-0 font-bold text-lg" type="number" value="1"/>
+<button class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+<button class="flex-1 bg-chocolate hover:bg-black text-white font-bold py-4 rounded-lg flex items-center justify-center gap-3 transition-all transform active:scale-[0.98]">
+<span class="material-symbols-outlined">shopping_cart</span>
+                        Kosárba teszem
+                    </button>
+<button class="p-4 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Related Products Section -->
+<section class="mt-24">
+<div class="flex items-end justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+<div>
+<h2 class="serif-font text-3xl font-bold">Hasonló Termékek</h2>
+<p class="text-slate-500 mt-2">Válogasson további prémium bútoraink közül</p>
+</div>
+<a class="text-primary font-semibold text-sm flex items-center gap-2 hover:underline" href="#">
+                    Összes termék <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden relative mb-4">
+<div class="w-full h-full bg-center bg-cover group-hover:scale-110 transition-transform duration-500" data-alt="Modern green sofa design" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFzWJl8PYkb82TV71i7krrjK7pJqAXz24yYZOvZ9r-tEVifhhtQZkEg16vB85Z7qbSnE2cGjUMW9m0DOexUWPqdzjHXI90QeGkq9JjAMNikd1IxQ1KNPcxkeG5em3s0gOR5z9M1l1PU4ETw_m0-mawNyg-yU034alVmvVJUwmo4WAWlVzxOWhb_8ECPHIhkXpqckE5PBpIvbAefE_1yKr6HY1JQoMMyPUFKFwHdL7fv6wIll5AETt4SdewEpJP_0KjlSKkhNH2Bd4");'></div>
+<button class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+<span class="material-symbols-outlined text-chocolate">add_shopping_cart</span>
+</button>
+</div>
+<p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Nappali</p>
+<h3 class="font-bold text-slate-900 dark:text-slate-100 mb-1">Luna Zöld Kanapé</h3>
+<p class="text-chocolate dark:text-primary font-semibold">890.000 HUF</p>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden relative mb-4">
+<div class="w-full h-full bg-center bg-cover group-hover:scale-110 transition-transform duration-500" data-alt="Minimalist marble coffee table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmwBEnxZu875SnhrOe6PCBXkloB7kHjIHTOp2b7jpmvJy8hzN_B5iRGDoRUrmOZailQxIJ7WkipjYm_HSVZCjNhqOQxocRxny7_jzxba9Av-F42rbCLG2W8-8dGmKw-Rewf7AKQIRqps28SNpSwzqAAj_oOUVZ0Hnmcl9zXDuKg3p56eGypWeSj4sTzIclioqJLVaw8LpB6pDGGzgko72IYqRedL5r4PFXKIasuJUZuPz_jiqiO9t797kz2jFZX3Hq2wgcgL1mOEk");'></div>
+<button class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+<span class="material-symbols-outlined text-chocolate">add_shopping_cart</span>
+</button>
+</div>
+<p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Nappali</p>
+<h3 class="font-bold text-slate-900 dark:text-slate-100 mb-1">Aria Márvány Asztal</h3>
+<p class="text-chocolate dark:text-primary font-semibold">215.000 HUF</p>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden relative mb-4">
+<div class="w-full h-full bg-center bg-cover group-hover:scale-110 transition-transform duration-500" data-alt="Sleek wooden chair with leather padding" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeMZ-OvRu8TMLASMt6rG5DvidS2gaGUEQLl2pE0uMDL6n1KLloN9g1HM6cKlJqh88SFO5s8IdLNJfRaA--rxfopsKnjmxmfRy2eirZXf3W46AgWxY1-seydjQQV8TrFSmQ4IPrRa07sfBx-udIpWErJuSJa2CO54heu-eZKeZ6st3dEuvSn1Bvkv4uvmcJOzQ4S0YLkciHsjvWuP-5e6q63MWxn_kilW9dK8uAvVpoveTQxev0xDIA2rGxqV99A5Awto3iI2hvRTw");'></div>
+<button class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+<span class="material-symbols-outlined text-chocolate">add_shopping_cart</span>
+</button>
+</div>
+<p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Étkező</p>
+<h3 class="font-bold text-slate-900 dark:text-slate-100 mb-1">Nordic Étkezőszék</h3>
+<p class="text-chocolate dark:text-primary font-semibold">68.000 HUF</p>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden relative mb-4">
+<div class="w-full h-full bg-center bg-cover group-hover:scale-110 transition-transform duration-500" data-alt="Luxury gold floor lamp" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8FwuOOdCb7hmJoE7zlY2hQIEkQY26mmNe3FzVQqORUuas2DI6bdr2Pwur4bAfGaqYEKPNadPewGcZwCpRnUN2xDbOdMiYZn9JQ7H-lOdQjoZQP2xeecCAWPBsexojuEWnhtIWsAs4Lrhtv3dGO2QHIwiCBu4lgW6nnM2EpmBmUSXsgYsdOV62HTU5HnhYH2RwzDrAI7AUYgPE0uwyb0jlNUc2FRJOVByOCdGrJJsxlQodP6oEqanArtu02-20271VMS-lgdFrNLA");'></div>
+<button class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+<span class="material-symbols-outlined text-chocolate">add_shopping_cart</span>
+</button>
+</div>
+<p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Világítás</p>
+<h3 class="font-bold text-slate-900 dark:text-slate-100 mb-1">Solomon Állólámpa</h3>
+<p class="text-chocolate dark:text-primary font-semibold">142.000 HUF</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-chocolate text-white mt-24 py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="space-y-6">
+<div class="flex items-center gap-2">
+<div class="bg-primary p-1.5 rounded">
+<svg class="w-5 h-5 text-white" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold">FurnSpace</h2>
+</div>
+<p class="text-white/60 text-sm leading-relaxed">Prémium bútorok és belsőépítészeti megoldások azoknak, akik értékelik a minőséget és az egyedi dizájnt.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6">Vásárlás</h4>
+<ul class="space-y-4 text-sm text-white/60">
+<li><a class="hover:text-primary" href="#">Szállítási feltételek</a></li>
+<li><a class="hover:text-primary" href="#">Fizetési módok</a></li>
+<li><a class="hover:text-primary" href="#">Garancia</a></li>
+<li><a class="hover:text-primary" href="#">Visszaküldés</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Vállalat</h4>
+<ul class="space-y-4 text-sm text-white/60">
+<li><a class="hover:text-primary" href="#">Rólunk</a></li>
+<li><a class="hover:text-primary" href="#">Bemutatóterem</a></li>
+<li><a class="hover:text-primary" href="#">Karrier</a></li>
+<li><a class="hover:text-primary" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Hírlevél</h4>
+<p class="text-sm text-white/60 mb-4">Iratkozzon fel exkluzív ajánlatainkért!</p>
+<div class="flex">
+<input class="bg-white/10 border-none rounded-l-lg focus:ring-1 focus:ring-primary w-full text-sm" placeholder="E-mail cím" type="email"/>
+<button class="bg-primary px-4 py-2 rounded-r-lg font-bold text-sm">OK</button>
+</div>
+</div>
+</div>
+<div class="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40">
+<p>© 2024 FurnSpace Bútorház. Minden jog fenntartva.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#">Adatkezelés</a>
+<a class="hover:text-white" href="#">ÁSZF</a>
+<a class="hover:text-white" href="#">Cookie-k</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FurnSpace Admin - Termékek</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5C3D2E", // Chocolate Brown adjustment for Refined Luxury
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-64 bg-slate-900 dark:bg-black text-white flex flex-col fixed h-full z-50">
+<div class="p-6 flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white">chair</span>
+</div>
+<div>
+<h1 class="text-xl font-bold leading-tight tracking-tight">FurnSpace</h1>
+<p class="text-xs text-slate-400 font-display">Refined Interiors</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-display text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 bg-primary text-white rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="font-display text-sm font-medium">Products</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+<span class="font-display text-sm font-medium">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl">category</span>
+<span class="font-display text-sm font-medium">Categories</span>
+</a>
+</nav>
+<div class="p-4 border-t border-white/10">
+<div class="flex items-center gap-3 p-2">
+<div class="h-9 w-9 rounded-full bg-slate-700 flex-shrink-0" data-alt="Admin user avatar profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBN0MenfB7Z1vHWcQf-xvKlJQiXf_9nikc4-p6rITKT9bnmjx5Sacj53qRfNFsdf_O26JMBX74PiHioUSEm5EwTuiVLoy1hkDrOn0cGG4nzaEx9OV3PDs9U_uXaVERSWHM_ybv_LNL3IuEAg2yFpJN0XI4BP8ouX2F9Ddrxo0kqyvLDkudTiFq4z9w4QlIcuHcoVZo6CQiBFACQ6-J_0k-Yf8W4l6DBArQEdxJPTipZSJ4UQFIWZ1IjkmwfRe_hHZ_XEGnvuraGR-A'); background-size: cover;"></div>
+<div class="overflow-hidden">
+<p class="text-sm font-medium truncate">Admin User</p>
+<p class="text-xs text-slate-400 truncate">admin@furnspace.hu</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 flex flex-col">
+<!-- Top Bar -->
+<header class="h-20 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-8 flex items-center justify-between sticky top-0 z-40">
+<div class="flex items-center gap-2 text-sm">
+<span class="text-slate-500">Admin</span>
+<span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+<span class="font-semibold text-primary">Termékek</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg font-display font-semibold text-sm transition-all flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+                    Új termék
+                </button>
+<div class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-700 overflow-hidden cursor-pointer" data-alt="Profile picture of the administrator">
+<img alt="Admin avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfymotcQtxjWcNrFWJDNUhVMvyQ0p52v2QMM6SVtU_OIH_9bu8h0LIVOBXSO3JT_R8pYEbTpDEUmye_l00KYPsQfpAUunzbqDdd3enPUcn0hOAC0PljwLvJTrUM-JfjkzkCfEIq-lbCqe3juIZCz8zPr87suQJeKHhrBTAoIO3b7-rJdiDDcS74ihO3_7ztMoenxAOjwAbXenCLlCTOrHqu5SkM1it3fm5DeTebj1bzdl-6b1qTSY6oFpopFw9xRw9n0TMr6l8ljA"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 @container">
+<div class="mb-8">
+<h2 class="text-3xl font-serif text-slate-900 dark:text-slate-100">Termékek kezelése</h2>
+<p class="text-slate-500 font-display mt-1">Leltár és termékkatalógus áttekintése</p>
+</div>
+<!-- ProductsDataTable -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider font-display">Product Image</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider font-display">Name</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider font-display">Category</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider font-display text-right">Price (HUF)</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider font-display text-center">Kiemelt</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider font-display text-center">Aktív</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider font-display text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Product Row 1 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="h-12 w-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden border border-slate-200 dark:border-slate-700" data-alt="Thumbnail image of a velvet emerald armchair">
+<img alt="Product thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU4fFoxqNzdSmVHnrp56RkBvgjM8H7KFyPCGt5DrRzrogM7TjYgXHBMaATndOGgaNFd1S1B4SkCaxSbr0lY-P2o82f8mHPcsmdElOQ58clhmeO0yVWWRblC2VbzVJD3Id64xRyACJ9ZRd_2p7IVPfHD-AGC-mCaZ1FVtnUhg6T5EzMp1vuyrtfp-iq3KRjsjc_G2LF2F9jzKQCtMH_asfOF3X9Qf5nye0UXU6P-nerLl_d2dfJk4R11w0u-EkmzajR-rnJOarJq4Q"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm font-semibold text-slate-900 dark:text-slate-100 font-sans">Velvet Emerald Armchair</div>
+<div class="text-xs text-slate-400 font-display">SKU: FUR-001</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary">Nappali</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-sm font-medium font-sans">189.900 Ft</div>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Product Row 2 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="h-12 w-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden border border-slate-200 dark:border-slate-700" data-alt="Thumbnail image of a marble top dining table">
+<img alt="Product thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW5PmuMZ4UOKHM4gTCILzKAS-Z_4G_f9py66N95Ca5XYodkKJnl4enuTKhdkdk2auVjtM6rE-vWoqf43Q34UUFS0rz5Gnce2aDr1CE-HW7MigH7YOqNsPdgiRW_XzgskLGf73ubRI7ZoY4IykVgaeyl08XO9U15diqpxeGi950WKNxhxa86-qipxSVtVD1QIvs9XqOuI0HLUy1lDT0z8r5eFZK53GrUkStfP7a4fHQUBEqPxiEWssyYx0klG5D6RqThbZ-Nipnuik"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm font-semibold text-slate-900 dark:text-slate-100 font-sans">Carrara Dining Table</div>
+<div class="text-xs text-slate-400 font-display">SKU: DIN-042</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary">Étkező</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-sm font-medium font-sans">442.500 Ft</div>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Product Row 3 -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="h-12 w-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden border border-slate-200 dark:border-slate-700" data-alt="Thumbnail image of a minimalist oak bookshelf">
+<img alt="Product thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcxa2dduxBKWPNYyg0QX2kaNl479KW_c-_s7gciyZ4U_wm7N9lEIhgiqEjH9FQB9tWSysGcOlld-6foPXgrN1j9pUuF71yQD1GRAiVbRvyTvcY_5aY_ofeWOfIg-iOkEpehpCqvev9ykkPDk2n7Wtw55DYmjsmPFdaUcSHnZQOKcvNXj9VyTQ4TYfZoXtmQzhaGc7XtFqKq_aoCEM0CR_h8z-mGGFQXQBaqC-wAdQRB8wVy2PKLZbQS9I1NvY35lgHwImvytJpsxo"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm font-semibold text-slate-900 dark:text-slate-100 font-sans">Nordic Oak Bookshelf</div>
+<div class="text-xs text-slate-400 font-display">SKU: STR-112</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary">Tárolás</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-sm font-medium font-sans">125.000 Ft</div>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<span class="text-sm text-slate-500 font-display">Mutatva 1-3 a 124 termékből</span>
+<div class="flex items-center gap-2">
+<button class="h-8 w-8 rounded flex items-center justify-center border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 text-slate-400">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="h-8 w-8 rounded bg-primary text-white flex items-center justify-center text-sm font-medium">1</button>
+<button class="h-8 w-8 rounded flex items-center justify-center border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 text-sm">2</button>
+<button class="h-8 w-8 rounded flex items-center justify-center border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 text-sm">3</button>
+<button class="h-8 w-8 rounded flex items-center justify-center border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 text-slate-400">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
