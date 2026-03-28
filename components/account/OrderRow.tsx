@@ -33,7 +33,7 @@ export function OrderRow({ order }: { order: Order }) {
 
       {/* Középpont: Státusz */}
       <div className="w-full sm:w-1/4 flex sm:justify-center">
-        <Badge variant="outline" className={`px-3 py-1 font-semibold uppercase tracking-wider text-[10px] ${statusMeta.colorClass}`}>
+        <Badge variant="outline" className={`px-3 py-1 font-semibold uppercase tracking-wider text-[10px] sm:text-xs ${statusMeta.colorClass}`}>
           {statusMeta.label}
         </Badge>
       </div>

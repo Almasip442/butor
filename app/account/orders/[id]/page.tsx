@@ -77,12 +77,12 @@ export default function OrderDetailPage({ params }: { params: { id: string } }) 
                 <h2 className="text-lg font-semibold uppercase tracking-widest text-[10px] text-muted-foreground mb-6">
                   Szállítási Folyamat
                 </h2>
-                <div className="relative flex justify-between">
+                <div className="relative flex flex-col sm:flex-row gap-8 sm:gap-0 sm:justify-between items-start sm:items-center py-4 sm:py-0">
                   {/* Progress Vonal */}
-                  <div className="absolute top-1/2 left-0 w-full h-[2px] bg-muted -translate-y-1/2 rounded-full overflow-hidden">
+                  <div className="absolute top-4 left-5 sm:top-1/2 sm:left-0 w-[2px] h-[calc(100%-2rem)] sm:w-full sm:h-[2px] bg-muted sm:-translate-y-1/2 rounded-full overflow-hidden">
                     <div 
-                      className="h-full bg-primary transition-all duration-1000 ease-out" 
-                      style={{ width: `${(Math.max(currentStatus.step - 1, 0) / 3) * 100}%` }}
+                      className="bg-primary transition-all duration-1000 ease-out w-full h-[var(--progress)] sm:h-full sm:w-[var(--progress)]" 
+                      style={{ '--progress': `${(Math.max(currentStatus.step - 1, 0) / 3) * 100}%` } as React.CSSProperties}
                     />
                   </div>
 
@@ -98,12 +98,12 @@ export default function OrderDetailPage({ params }: { params: { id: string } }) 
                     const Icon = s.icon
 
                     return (
-                      <div key={s.step} className="relative z-10 flex flex-col items-center gap-2">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
+                      <div key={s.step} className="relative z-10 flex flex-row sm:flex-col items-center gap-4 sm:gap-2">
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors shrink-0 bg-background ${
                           isCompleted 
-                            ? "bg-primary border-primary text-primary-foreground" 
-                            : "bg-background border-muted text-muted-foreground"
-                        } ${isCurrent && "ring-4 ring-primary/20"}`}>
+                            ? "border-primary text-primary" 
+                            : "border-muted text-muted-foreground"
+                        } ${isCurrent && "ring-4 ring-primary/20 bg-primary/10"}`}>
                           <Icon className="w-5 h-5" />
                         </div>
                         <span className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider ${isCompleted ? "text-foreground" : "text-muted-foreground"}`}>
