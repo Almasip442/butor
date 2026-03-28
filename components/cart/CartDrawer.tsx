@@ -62,7 +62,7 @@ export function CartDrawer() {
           ) : (
             <div className="flex flex-col divide-y divide-border/60">
               {items.map((item) => (
-                <CartItemRow key={item.product.id} item={item} />
+                <CartItemRow key={item.product.id} item={item} isDrawer />
               ))}
             </div>
           )}
