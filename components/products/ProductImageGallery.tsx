@@ -21,9 +21,9 @@ export function ProductImageGallery({ images, productName }: ProductImageGallery
   }
 
   return (
-    <div className="flex flex-col gap-4 sm:gap-6 w-full">
+    <div className="flex flex-col sm:flex-row-reverse gap-4 sm:gap-6 w-full">
       {/* Főkép */}
-      <div className="relative aspect-[4/5] sm:aspect-square w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-muted border border-border/60 shadow-sm">
+      <div className="relative aspect-square w-full sm:flex-1 overflow-hidden rounded-2xl sm:rounded-3xl bg-muted border border-border/60 shadow-sm">
         <Image
           src={images[activeIndex]}
           alt={`${productName} - Kép ${activeIndex + 1}`}
@@ -36,7 +36,7 @@ export function ProductImageGallery({ images, productName }: ProductImageGallery
 
       {/* Bélyegképek (Thumbnails) */}
       {images.length > 1 && (
-        <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 snap-x scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="flex flex-row sm:flex-col gap-3 sm:gap-4 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0 sm:w-20 snap-x scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           {images.map((image, index) => {
             const isActive = index === activeIndex
             return (

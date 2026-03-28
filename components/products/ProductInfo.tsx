@@ -53,8 +53,8 @@ export function ProductInfo({ product }: ProductInfoProps) {
         <p>{product.description}</p>
       </div>
 
-      {/* ── Tulajdonságok rács ── */}
-      <div className="grid grid-cols-2 gap-4 sm:gap-6 bg-muted/30 p-5 rounded-2xl border border-border/50 shadow-sm">
+      {/* ── Tulajdonságok rács (Asztali) ── */}
+      <div className="hidden md:grid grid-cols-2 gap-4 sm:gap-6 bg-muted/30 p-5 rounded-2xl border border-border/50 shadow-sm">
         <div className="space-y-1.5">
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Anyag</p>
           <p className="font-medium text-sm sm:text-base text-foreground">{product.material || "N/A"}</p>
@@ -74,23 +74,51 @@ export function ProductInfo({ product }: ProductInfoProps) {
         </div>
       </div>
 
+      {/* ── Tulajdonságok összecsukható (Mobil) ── */}
+      <details className="md:hidden group bg-muted/30 rounded-2xl border border-border/50 shadow-sm overflow-hidden">
+        <summary className="p-4 font-medium text-foreground flex items-center justify-between cursor-pointer list-none touch-target relative [&::-webkit-details-marker]:hidden">
+          <span className="font-semibold text-sm">Termék részletek</span>
+          <svg className="w-4 h-4 text-muted-foreground group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div className="px-4 pb-4 pt-2 border-t border-border/50 grid grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Anyag</p>
+            <p className="font-medium text-sm text-foreground">{product.material || "N/A"}</p>
+          </div>
+          <div className="space-y-1.5">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Szín</p>
+            <p className="font-medium text-sm text-foreground">{product.color || "N/A"}</p>
+          </div>
+          <div className="space-y-1 col-span-2">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Készlet Info</p>
+            <div className="flex items-center gap-2 mt-1 py-1 px-3 bg-background rounded-full border border-border/50 inline-flex shadow-sm">
+              <span className={`w-2 h-2 rounded-full shadow-sm ${inStock ? "bg-emerald-500 shadow-emerald-500/50" : "bg-destructive animate-pulse"}`} />
+              <p className="font-semibold text-xs text-foreground">
+                {inStock ? `Raktáron (${product.stock_quantity} db)` : "Jelenleg elfogyott"}
+              </p>
+            </div>
+          </div>
+        </div>
+      </details>
+
       {/* ── Kosárba helyezés ── */}
-      <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-        <div className="flex-shrink-0">
+      <div className="mt-6 flex items-center justify-between gap-3">
+        <div className="flex-[0_0_100px] sm:flex-shrink-0">
            <QuantitySelector
              value={quantity}
              onChange={setQuantity}
              max={product.stock_quantity}
              disabled={!inStock}
-             className="h-14 bg-muted/40"
+             className="h-14 bg-muted/40 min-h-[44px] w-full"
            />
         </div>
         
         <AddToCartButton
           product={product}
           quantity={quantity}
-          fullWidth
-          className="h-14 text-sm sm:text-base tracking-widest uppercase font-bold shadow-lg shadow-primary/20 hover:shadow-xl transition-shadow"
+          className="flex-1 h-14 min-h-[44px] text-sm sm:text-base tracking-widest uppercase font-bold shadow-lg shadow-primary/20 hover:shadow-xl transition-shadow"
         />
       </div>
 
