@@ -38,9 +38,9 @@ export default function AdminDashboardPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, index) => (
-          <Card key={index}>
+          <Card key={index} className="overflow-hidden">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 {stat.title}
@@ -57,8 +57,8 @@ export default function AdminDashboardPage() {
         ))}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card>
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2 mt-8">
+        <Card className="overflow-hidden">
           <CardHeader>
             <CardTitle>Legutóbbi rendelések</CardTitle>
           </CardHeader>
@@ -68,7 +68,7 @@ export default function AdminDashboardPage() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="overflow-hidden">
           <CardHeader>
             <CardTitle>Alacsony készlet</CardTitle>
           </CardHeader>

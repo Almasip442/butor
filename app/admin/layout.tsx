@@ -8,10 +8,10 @@ export const metadata = {
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="container mx-auto py-8">
-      <div className="flex flex-col md:flex-row md:gap-8">
-        <AdminSidebar />
-        <main className="flex-1 min-w-0">
+    <div className="flex flex-col md:flex-row min-h-[calc(100vh-var(--header-height,5rem))] bg-muted/10">
+      <AdminSidebar />
+      <div className="flex-1 flex flex-col min-w-0">
+        <main className="p-4 sm:p-6 lg:p-8 flex-1">
           {children}
         </main>
       </div>

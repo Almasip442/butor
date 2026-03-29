@@ -60,20 +60,23 @@ export function AdminSidebar() {
 
   return (
     <>
-      <aside className="hidden border-r border-border pr-6 md:block w-64 min-h-[500px]">
+      <aside className="hidden w-64 flex-shrink-0 border-r border-border bg-background pt-4 md:block">
         <SidebarContent />
       </aside>
-      <div className="md:hidden">
+      <div className="md:hidden flex items-center justify-between border-b border-border bg-background p-4 w-full shrink-0">
+        <span className="font-display font-semibold uppercase tracking-widest text-lg px-2">
+          Admintér
+        </span>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="mb-4 touch-target">
+            <Button variant="outline" size="icon" className="touch-target">
               <Menu className="h-5 w-5" />
               <span className="sr-only">Admin menü megnyitása</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-72">
+          <SheetContent side="left" className="w-[80vw] max-w-sm sm:max-w-xs">
             <SheetHeader>
-               <SheetTitle className="sr-only">Admin Navigáció</SheetTitle>
+               <SheetTitle className="text-left font-display">Admintér</SheetTitle>
             </SheetHeader>
             <SidebarContent />
           </SheetContent>
