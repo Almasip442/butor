@@ -80,8 +80,8 @@ export function OrdersDataTable({ orders: initialOrders }: OrdersDataTableProps)
   };
 
   return (
-    <div className="rounded-md border bg-card">
-      <Table>
+    <div className="rounded-md border bg-card w-full overflow-x-auto">
+      <Table className="min-w-[700px]">
         <TableHeader>
           <TableRow>
             <TableHead>Rendelés ID</TableHead>
@@ -109,8 +109,10 @@ export function OrdersDataTable({ orders: initialOrders }: OrdersDataTableProps)
                   <TableCell className="font-medium font-mono text-sm">
                     #{truncatedId}
                   </TableCell>
-                  <TableCell>{mockCustomer}</TableCell>
-                  <TableCell>{formatDate(order.created_at)}</TableCell>
+                  <TableCell className="max-w-[120px] truncate sm:max-w-[200px]" title={mockCustomer}>
+                    {mockCustomer}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">{formatDate(order.created_at)}</TableCell>
                   <TableCell className="font-semibold">{formatPrice(order.total_amount)}</TableCell>
                   <TableCell>
                     <div className="flex flex-col xl:flex-row xl:items-center gap-2">

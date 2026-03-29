@@ -121,7 +121,7 @@ export default function AdminCategoriesPage() {
         </Dialog>
       </div>
       
-      <div className="rounded-md border bg-card overflow-hidden">
+      <div className="rounded-md border bg-card w-full overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
