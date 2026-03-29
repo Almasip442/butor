@@ -73,7 +73,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Termék neve</FormLabel>
+                <FormLabel>Termék neve <span className="text-destructive ml-1">*</span></FormLabel>
                 <FormControl>
                   <Input placeholder="Pl. Skandináv tölgyfa asztal" {...field} />
                 </FormControl>
@@ -88,7 +88,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
             name="slug"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>URL (slug)</FormLabel>
+                <FormLabel>URL (slug) <span className="text-destructive ml-1">*</span></FormLabel>
                 <FormControl>
                   <Input placeholder="pl. skandinav-tolgyfa-asztal" {...field} />
                 </FormControl>
@@ -97,43 +97,44 @@ export function ProductForm({ initialData }: ProductFormProps) {
             )}
           />
 
-          {/* Ár */}
-          <FormField
-            control={form.control}
-            name="price"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Ár (Ft)</FormLabel>
-                <FormControl>
-                  <Input type="number" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="grid grid-cols-2 gap-4 md:col-span-2 lg:col-span-1 lg:grid-cols-2 lg:gap-6">
+            {/* Ár */}
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Ár (Ft) <span className="text-destructive ml-1">*</span></FormLabel>
+                  <FormControl>
+                    <Input type="number" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          {/* Készlet */}
-          <FormField
-            control={form.control}
-            name="stock_quantity"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Készlet mennyiség</FormLabel>
-                <FormControl>
-                  <Input type="number" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            {/* Készlet */}
+            <FormField
+              control={form.control}
+              name="stock_quantity"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="truncate">Készlet mennyiség <span className="text-destructive ml-1">*</span></FormLabel>
+                  <FormControl>
+                    <Input type="number" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-          {/* Kategória */}
           <FormField
             control={form.control}
             name="category_id"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Kategória</FormLabel>
+              <FormItem className="md:col-span-2 lg:col-span-1">
+                <FormLabel>Kategória <span className="text-destructive ml-1">*</span></FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
@@ -160,7 +161,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Leírás</FormLabel>
+              <FormLabel>Leírás <span className="text-destructive ml-1">*</span></FormLabel>
               <FormControl>
                 <Textarea placeholder="Részletes termékleírás..." className="min-h-[120px]" {...field} />
               </FormControl>
@@ -175,7 +176,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
           name="images"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Termékképek</FormLabel>
+              <FormLabel>Termékképek <span className="text-destructive ml-1">*</span></FormLabel>
               <FormControl>
                 <ImageUploader images={field.value} onChange={field.onChange} />
               </FormControl>

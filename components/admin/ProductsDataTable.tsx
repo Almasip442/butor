@@ -44,7 +44,7 @@ export function ProductsDataTable({ products: initialProducts, categories }: Pro
   };
 
   return (
-    <div className="rounded-md border bg-card">
+    <div className="rounded-md border bg-card w-full overflow-x-auto">
       <Table>
         <TableHeader>
           <TableRow>
@@ -79,7 +79,9 @@ export function ProductsDataTable({ products: initialProducts, categories }: Pro
                     )}
                   </div>
                 </TableCell>
-                <TableCell className="font-medium">{product.name}</TableCell>
+                <TableCell className="font-medium max-w-[120px] truncate sm:max-w-[250px]" title={product.name}>
+                  {product.name}
+                </TableCell>
                 <TableCell>
                   <Badge variant="secondary">{getCategoryName(product.category_id)}</Badge>
                 </TableCell>
