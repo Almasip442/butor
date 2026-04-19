@@ -1,0 +1,1 @@
+- [Iteráció 4 — Admin CRUD és Storage](project_iteration4.md) — Admin CRUD + Supabase Storage kész; adminClient `as any` cast szükséges DML-nél
