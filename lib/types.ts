@@ -10,10 +10,10 @@ export interface Category {
   id: string
   name: string
   slug: string
-  description?: string
-  image_url: string
+  description?: string | null
+  image_url: string | null
   /** Szülő kategória azonosítója (opcionális alkategóriáknál) */
-  parent_id?: string
+  parent_id?: string | null
 }
 
 // ------------------------------------------------------------
@@ -27,10 +27,12 @@ export interface Product {
   price: number
   stock_quantity: number
   /** Termékképek URL tömbje — első elem a főkép */
-  images: string[]
+  images: string[] | null
   category_id: string
-  material?: string
-  color?: string
+  material?: string | null
+  color?: string | null
+  dimensions?: unknown | null
+  weight_kg?: number | null
   is_featured: boolean
   is_active: boolean
 }
@@ -49,7 +51,7 @@ export interface OrderItem {
 // ------------------------------------------------------------
 // Rendelés
 // ------------------------------------------------------------
-export type OrderStatus = "pending" | "processing" | "shipped" | "delivered" | "cancelled"
+export type OrderStatus = "pending" | "confirmed" | "processing" | "shipped" | "delivered" | "cancelled"
 
 export interface Order {
   id: string
@@ -59,6 +61,25 @@ export interface Order {
   items: OrderItem[]
   /** Szállítási cím snapshot */
   shipping_address?: ShippingAddress
+}
+
+// ------------------------------------------------------------
+// Rendelés tételekkel — Supabase join lekérdezéshez
+// ------------------------------------------------------------
+export interface OrderWithItems {
+  id: string
+  user_id: string
+  status: OrderStatus
+  total_amount: number
+  shipping_name: string
+  shipping_address: string
+  shipping_city: string
+  shipping_zip: string
+  shipping_country: string
+  notes: string | null
+  created_at: string
+  updated_at: string
+  order_items: OrderItem[]
 }
 
 // ------------------------------------------------------------

@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import Link from "next/link"
 import { Loader2 } from "lucide-react"
+import { toast } from "sonner"
 
 import {
   Form,
@@ -18,6 +19,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { createClient } from "@/lib/supabase/client"
 
 const registerSchema = z.object({
   full_name: z.string().min(2, "A név megadása kötelező"),
@@ -34,6 +37,7 @@ type RegisterFormValues = z.infer<typeof registerSchema>
 export function RegisterForm() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -45,17 +49,29 @@ export function RegisterForm() {
     },
   })
 
-  function onSubmit(data: RegisterFormValues) {
+  async function onSubmit(data: RegisterFormValues) {
     setIsLoading(true)
+    setError(null)
 
-    // TODO: Supabase signUp
-    console.log("Register data:", data)
+    const supabase = createClient()
+    const { error: signUpError } = await supabase.auth.signUp({
+      email: data.email,
+      password: data.password,
+      options: {
+        data: {
+          full_name: data.full_name,
+        },
+      },
+    })
 
-    setTimeout(() => {
+    if (signUpError) {
+      setError(signUpError.message)
       setIsLoading(false)
-      // Redirecting to login after sign up as a mock behavior
-      router.push("/login")
-    }, 1500)
+      return
+    }
+
+    toast.success("Sikeres regisztráció!")
+    router.push('/login')
   }
 
   return (
@@ -68,6 +84,12 @@ export function RegisterForm() {
           Hozd létre saját egyedi FurnSpace fiókod
         </p>
       </div>
+
+      {error && (
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

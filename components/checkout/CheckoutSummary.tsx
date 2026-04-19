@@ -57,7 +57,7 @@ export function CheckoutSummary() {
                {/* Termék Kép */}
                <div className="relative h-16 w-16 sm:h-20 sm:w-20 overflow-hidden rounded-lg border border-border/50 bg-muted">
                  <Image
-                   src={item.product.images[0]}
+                   src={item.product.images?.[0] ?? '/placeholder.svg'}
                    alt={item.product.name}
                    fill
                    className="object-cover"

@@ -1,0 +1,13 @@
+{
+    "permissions": {
+        "allow": [
+            "Mcp__paper__*",
+            "Npm *",
+            "Npx *",
+            "Node *",
+            "Git *",
+            "Pnpm *",
+            "mcp__paper__get_basic_info"
+        ]
+    }
+}

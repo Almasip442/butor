@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter, usePathname, useSearchParams } from "next/navigation"
-import { MOCK_CATEGORIES } from "@/lib/mock-data"
+import type { Category } from "@/lib/types"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
@@ -30,9 +30,10 @@ const KNOWN_MATERIALS = ["Fa", "Szövet", "Bársony", "Üveg", "Fém", "Bőr", "
 interface ProductFiltersProps {
   isMobileOnly?: boolean
   isDesktopOnly?: boolean
+  categories?: Category[]
 }
 
-export function ProductFilters({ isMobileOnly, isDesktopOnly }: ProductFiltersProps = {}) {
+export function ProductFilters({ isMobileOnly, isDesktopOnly, categories = [] }: ProductFiltersProps = {}) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -112,7 +113,7 @@ export function ProductFilters({ isMobileOnly, isDesktopOnly }: ProductFiltersPr
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Minden kategória</SelectItem>
-            {MOCK_CATEGORIES.map((cat) => (
+            {categories.map((cat) => (
               <SelectItem key={cat.id} value={cat.slug}>
                 {cat.name}
               </SelectItem>

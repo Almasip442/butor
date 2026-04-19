@@ -1,0 +1,1 @@
+- [FurnSpace project UI coverage](project_furnspace.md) — admin UI screens pre-built in mock mode; no Paper tool; codebase is design source of truth

@@ -25,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset" aria-label={`${product.name} részletek`}>
           <Image
-            src={product.images[0]}
+            src={product.images?.[0] ?? '/placeholder.svg'}
             alt={product.name}
             fill
             className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"

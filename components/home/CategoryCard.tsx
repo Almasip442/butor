@@ -14,7 +14,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
     >
       <div className="relative w-full aspect-square overflow-hidden rounded-2xl bg-muted border border-border/50 shadow-sm group-hover:shadow-xl transition-all duration-500 ease-out">
         <Image
-          src={category.image_url}
+          src={category.image_url ?? '/placeholder.svg'}
           alt={`Navigáció a(z) ${category.name} kategóriához`}
           fill
           className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"

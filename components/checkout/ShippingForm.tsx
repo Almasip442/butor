@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useCartStore } from "@/lib/store/cart-store"
-import { MOCK_USER } from "@/lib/mock-data"
-import { Loader2 } from "lucide-react"
+import { placeOrder } from "@/app/checkout/actions"
+import { Loader2, AlertCircle } from "lucide-react"
 
 import {
   Form,
@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 const shippingSchema = z.object({
   full_name: z.string().min(2, "Teljes név megadása kötelező"),
@@ -34,36 +35,50 @@ const shippingSchema = z.object({
 
 type ShippingFormValues = z.infer<typeof shippingSchema>
 
-export function ShippingForm() {
+interface ShippingFormProps {
+  defaultValues?: Partial<ShippingFormValues>
+}
+
+export function ShippingForm({ defaultValues }: ShippingFormProps) {
   const router = useRouter()
+  const items = useCartStore((state) => state.items)
   const clearCart = useCartStore((state) => state.clearCart)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const form = useForm<ShippingFormValues>({
     resolver: zodResolver(shippingSchema),
     defaultValues: {
-      full_name: MOCK_USER.shipping_address?.full_name || "",
-      email: MOCK_USER.shipping_address?.email || "",
-      phone: "",
-      zip_code: MOCK_USER.shipping_address?.zip_code || "",
-      city: MOCK_USER.shipping_address?.city || "",
-      address: MOCK_USER.shipping_address?.address || "",
-      country: MOCK_USER.shipping_address?.country || "Magyarország",
-      notes: "",
+      full_name: defaultValues?.full_name ?? "",
+      email: defaultValues?.email ?? "",
+      phone: defaultValues?.phone ?? "",
+      zip_code: defaultValues?.zip_code ?? "",
+      city: defaultValues?.city ?? "",
+      address: defaultValues?.address ?? "",
+      country: defaultValues?.country ?? "Magyarország",
+      notes: defaultValues?.notes ?? "",
     },
   })
 
-  function onSubmit(data: ShippingFormValues) {
+  async function onSubmit(data: ShippingFormValues) {
     setIsSubmitting(true)
-    
-    // Simulate API call
-    setTimeout(() => {
-      // TODO: replace with Supabase Server Action
-      console.log("Form data:", data)
+    setError(null)
+
+    const cartItems = items.map((item) => ({
+      productId: item.product.id,
+      quantity: item.quantity,
+      unitPrice: item.product.price,
+      productName: item.product.name,
+    }))
+
+    try {
+      const result = await placeOrder(data, cartItems)
       clearCart()
+      router.push(`/order-confirmation?orderId=${result.orderId}`)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Ismeretlen hiba történt. Kérjük, próbálja újra.")
       setIsSubmitting(false)
-      router.push("/order-confirmation")
-    }, 1500)
+    }
   }
 
   return (
@@ -73,6 +88,13 @@ export function ShippingForm() {
           <h2 className="text-xl sm:text-2xl font-semibold font-display tracking-tight text-foreground uppercase border-b border-border/40 pb-4">
             Szállítási Adatok
           </h2>
+
+          {error && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
 
           <FormField
             control={form.control}
@@ -178,7 +200,7 @@ export function ShippingForm() {
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="notes"
@@ -186,10 +208,10 @@ export function ShippingForm() {
               <FormItem>
                 <FormLabel className="text-muted-foreground uppercase tracking-widest text-[10px] font-bold">Megjegyzés a futárnak (opcionális)</FormLabel>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Pl.: A kapukód 1234, kérem hívjon, ha megérkezett." 
+                  <Textarea
+                    placeholder="Pl.: A kapukód 1234, kérem hívjon, ha megérkezett."
                     className="resize-none bg-muted/40 transition-colors focus:bg-background"
-                    {...field} 
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
@@ -198,9 +220,9 @@ export function ShippingForm() {
           />
         </div>
 
-        <Button 
-          type="submit" 
-          disabled={isSubmitting} 
+        <Button
+          type="submit"
+          disabled={isSubmitting}
           className="w-full h-14 text-sm sm:text-base uppercase tracking-widest font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:-translate-y-0.5 transition-all touch-target"
         >
           {isSubmitting ? (

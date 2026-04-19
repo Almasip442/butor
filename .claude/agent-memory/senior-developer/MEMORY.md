@@ -1,0 +1,1 @@
+- [FurnSpace Project Architecture](project_furnspace.md) — Stack, Supabase schema, seed UUIDs, SQL file order, auth trigger, storage bucket

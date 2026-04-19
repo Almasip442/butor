@@ -1,31 +1,63 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Package, ShoppingCart, Users, DollarSign } from "lucide-react";
+export const dynamic = 'force-dynamic'
 
-export default function AdminDashboardPage() {
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Package, ShoppingCart, Tag, DollarSign } from "lucide-react";
+import { createAdminClient } from "@/lib/supabase/admin";
+
+export default async function AdminDashboardPage() {
+  const supabase = createAdminClient();
+
+  const [
+    { count: activeProductsCount },
+    { count: categoriesCount },
+    { count: pendingOrdersCount },
+    { data: revenueData },
+  ] = await Promise.all([
+    supabase
+      .from("products")
+      .select("*", { count: "exact", head: true })
+      .eq("is_active", true),
+    supabase
+      .from("categories")
+      .select("*", { count: "exact", head: true }),
+    supabase
+      .from("orders")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "pending"),
+    supabase
+      .from("orders")
+      .select("total_amount"),
+  ]);
+
+  const totalRevenue = (revenueData ?? []).reduce(
+    (sum, row) => sum + (row.total_amount ?? 0),
+    0
+  );
+
   const stats = [
     {
-      title: "Összes termék",
-      value: "18",
+      title: "Aktív termékek",
+      value: String(activeProductsCount ?? 0),
       icon: Package,
-      description: "Aktív kategóriákban",
+      description: "Aktív termékek száma",
     },
     {
-      title: "Aktív rendelések",
-      value: "3",
+      title: "Kategóriák",
+      value: String(categoriesCount ?? 0),
+      icon: Tag,
+      description: "Összes kategória",
+    },
+    {
+      title: "Függő rendelések",
+      value: String(pendingOrdersCount ?? 0),
       icon: ShoppingCart,
       description: "Feldolgozásra vár",
     },
     {
-      title: "Összes felhasználó",
-      value: "1",
-      icon: Users,
-      description: "Regisztrált vásárló",
-    },
-    {
       title: "Teljes bevétel",
-      value: "2 540 000 Ft",
+      value: `${totalRevenue.toLocaleString("hu-HU")} Ft`,
       icon: DollarSign,
-      description: "Az elmúlt 30 napban",
+      description: "Összes rendelés összege",
     },
   ];
 

@@ -5,7 +5,7 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 interface ProductImageGalleryProps {
-  images: string[]
+  images: string[] | null
   productName: string
 }
 

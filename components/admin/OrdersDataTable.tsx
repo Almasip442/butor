@@ -1,24 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import Link from "next/link";
-import { Eye, FileText, MoreHorizontal } from "lucide-react";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from "@/components/ui/table";
+import { Eye } from "lucide-react";
+import { toast } from "sonner";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
 import {
   Select,
   SelectContent,
@@ -26,65 +19,76 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Order } from "@/lib/types";
+import { Button } from "@/components/ui/button";
+import { updateOrderStatus } from "@/app/admin/orders/actions";
+import type { OrderStatus } from "@/lib/types";
+
+const statusOptions: { value: OrderStatus; label: string }[] = [
+  { value: "pending", label: "Függőben" },
+  { value: "confirmed", label: "Visszaigazolva" },
+  { value: "processing", label: "Feldolgozás alatt" },
+  { value: "shipped", label: "Kiszállítva" },
+  { value: "delivered", label: "Kézbesítve" },
+  { value: "cancelled", label: "Törölve" },
+];
+
+const statusColorMap: Record<OrderStatus, string> = {
+  pending: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
+  confirmed: "bg-teal-500/10 text-teal-600 border-teal-500/20",
+  processing: "bg-blue-500/10 text-blue-600 border-blue-500/20",
+  shipped: "bg-purple-500/10 text-purple-600 border-purple-500/20",
+  delivered: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+  cancelled: "bg-red-500/10 text-red-600 border-red-500/20",
+};
+
+interface AdminOrder {
+  id: string;
+  status: OrderStatus;
+  total_amount: number;
+  created_at: string;
+  shipping_name: string;
+  users?: { full_name: string } | null;
+}
 
 interface OrdersDataTableProps {
-  orders: Order[];
+  orders: AdminOrder[];
 }
 
 export function OrdersDataTable({ orders: initialOrders }: OrdersDataTableProps) {
   const [orders, setOrders] = useState(initialOrders);
+  const [isPending, startTransition] = useTransition();
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(price);
-  };
+  const formatPrice = (price: number) =>
+    new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(price);
 
-  const formatDate = (dateString: string) => {
-    return new Intl.DateTimeFormat('hu-HU', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }).format(new Date(dateString));
-  };
+  const formatDate = (dateString: string) =>
+    new Intl.DateTimeFormat('hu-HU', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(dateString));
 
-  const updateOrderStatus = (id: string, newStatus: string) => {
-    setOrders(orders.map(order => 
-      order.id === id ? { ...order, status: newStatus as any } : order
-    ));
-  };
+  const handleStatusChange = (orderId: string, prevStatus: OrderStatus, newStatus: string) => {
+    setOrders(prev =>
+      prev.map(o => o.id === orderId ? { ...o, status: newStatus as OrderStatus } : o)
+    );
 
-  const getStatusColor = (status: string) => {
-    switch(status) {
-      case 'pending': return 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100/80';
-      case 'processing': return 'bg-blue-100 text-blue-800 hover:bg-blue-100/80';
-      case 'shipped': return 'bg-purple-100 text-purple-800 hover:bg-purple-100/80';
-      case 'delivered': return 'bg-green-100 text-green-800 hover:bg-green-100/80';
-      case 'cancelled': return 'bg-red-100 text-red-800 hover:bg-red-100/80';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const getStatusLabel = (status: string) => {
-    switch(status) {
-      case 'pending': return 'Függőben';
-      case 'processing': return 'Feldolgozás alatt';
-      case 'shipped': return 'Szállítás alatt';
-      case 'delivered': return 'Kiszállítva';
-      case 'cancelled': return 'Törölve';
-      default: return status;
-    }
+    startTransition(async () => {
+      const result = await updateOrderStatus(orderId, newStatus);
+      if (!result.success) {
+        setOrders(prev =>
+          prev.map(o => o.id === orderId ? { ...o, status: prevStatus } : o)
+        );
+        toast.error(result.error ?? 'Státusz frissítés sikertelen');
+      } else {
+        toast.success(`Státusz frissítve: ${statusOptions.find(s => s.value === newStatus)?.label}`);
+      }
+    });
   };
 
   return (
     <div className="rounded-md border bg-card w-full overflow-x-auto">
-      <Table className="min-w-[700px]">
+      <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Rendelés ID</TableHead>
+            <TableHead>Rendelés</TableHead>
             <TableHead>Vásárló</TableHead>
             <TableHead>Dátum</TableHead>
             <TableHead>Összeg</TableHead>
@@ -100,68 +104,57 @@ export function OrdersDataTable({ orders: initialOrders }: OrdersDataTableProps)
               </TableCell>
             </TableRow>
           ) : (
-            orders.map((order) => {
-              const mockCustomer = "Kovács Anna"; 
-              const truncatedId = order.id.split('-')[0] || order.id;
-              
-              return (
-                <TableRow key={order.id}>
-                  <TableCell className="font-medium font-mono text-sm">
-                    #{truncatedId}
-                  </TableCell>
-                  <TableCell className="max-w-[120px] truncate sm:max-w-[200px]" title={mockCustomer}>
-                    {mockCustomer}
-                  </TableCell>
-                  <TableCell className="whitespace-nowrap">{formatDate(order.created_at)}</TableCell>
-                  <TableCell className="font-semibold">{formatPrice(order.total_amount)}</TableCell>
-                  <TableCell>
-                    <div className="flex flex-col xl:flex-row xl:items-center gap-2">
-                      <Select 
-                        defaultValue={order.status} 
-                        onValueChange={(value) => updateOrderStatus(order.id, value)}
-                      >
-                        <SelectTrigger className="w-[160px] h-8 text-xs font-medium">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="pending">Függőben</SelectItem>
-                          <SelectItem value="processing">Feldolgozás alatt</SelectItem>
-                          <SelectItem value="shipped">Szállítás alatt</SelectItem>
-                          <SelectItem value="delivered">Kiszállítva</SelectItem>
-                          <SelectItem value="cancelled">Törölve</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Badge className={getStatusColor(order.status)} variant="outline">
-                        {getStatusLabel(order.status)}
-                      </Badge>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                          <span className="sr-only">Menü megnyitása</span>
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Műveletek</DropdownMenuLabel>
-                        <DropdownMenuItem asChild>
-                          <Link href={`/admin/orders/${order.id}`}>
-                            <Eye className="mr-2 h-4 w-4" />
-                            Részletek
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <FileText className="mr-2 h-4 w-4" />
-                          Számla
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              );
-            })
+            orders.map((order) => (
+              <TableRow key={order.id}>
+                <TableCell className="font-mono text-sm">
+                  #{order.id.slice(0, 8)}
+                </TableCell>
+                <TableCell>
+                  {order.users?.full_name ?? order.shipping_name}
+                </TableCell>
+                <TableCell className="text-muted-foreground text-sm">
+                  {formatDate(order.created_at)}
+                </TableCell>
+                <TableCell className="font-medium tabular-nums">
+                  {formatPrice(order.total_amount)}
+                </TableCell>
+                <TableCell>
+                  <Select
+                    value={order.status}
+                    onValueChange={(newStatus) =>
+                      handleStatusChange(order.id, order.status, newStatus)
+                    }
+                    disabled={isPending}
+                  >
+                    <SelectTrigger className="w-[160px]">
+                      <SelectValue>
+                        <Badge
+                          variant="outline"
+                          className={statusColorMap[order.status]}
+                        >
+                          {statusOptions.find(s => s.value === order.status)?.label}
+                        </Badge>
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {statusOptions.map((opt) => (
+                        <SelectItem key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </TableCell>
+                <TableCell className="text-right">
+                  <Button variant="ghost" size="sm" asChild>
+                    <Link href={`/admin/orders/${order.id}`}>
+                      <Eye className="h-4 w-4 mr-1" />
+                      Részletek
+                    </Link>
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))
           )}
         </TableBody>
       </Table>

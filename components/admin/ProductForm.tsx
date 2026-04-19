@@ -1,9 +1,11 @@
 "use client";
 
+import { useActionState, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,7 +21,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { ImageUploader } from "./ImageUploader";
-import { MOCK_CATEGORIES as categories } from "@/lib/mock-data";
+import { Category, Product } from "@/lib/types";
+import { upsertProduct } from "@/app/admin/products/actions";
 
 const productSchema = z.object({
   name: z.string().min(3, "Legalább 3 karakter").max(200),
@@ -36,36 +39,56 @@ const productSchema = z.object({
 type ProductFormValues = z.infer<typeof productSchema>;
 
 interface ProductFormProps {
-  initialData?: any; // TBD: Product type
+  initialData?: Partial<Product> | null;
+  categories: Category[];
 }
 
-export function ProductForm({ initialData }: ProductFormProps) {
+export function ProductForm({ initialData, categories }: ProductFormProps) {
   const router = useRouter();
-  
-  const form = useForm({
-    resolver: zodResolver(productSchema),
-    defaultValues: initialData || {
-      name: "",
-      slug: "",
-      description: "",
-      price: 0,
-      stock_quantity: 0,
-      category_id: "",
-      is_active: true,
-      is_featured: false,
-      images: [],
+  const [isUploading, setIsUploading] = useState(false);
+  const [state, formAction, isPending] = useActionState(upsertProduct, null);
+
+  const form = useForm<ProductFormValues, unknown, ProductFormValues>({
+    resolver: zodResolver(productSchema) as any,
+    defaultValues: {
+      name: initialData?.name ?? "",
+      slug: initialData?.slug ?? "",
+      description: initialData?.description ?? "",
+      price: initialData?.price ?? 0,
+      stock_quantity: initialData?.stock_quantity ?? 0,
+      category_id: initialData?.category_id ?? "",
+      is_active: initialData?.is_active ?? true,
+      is_featured: initialData?.is_featured ?? false,
+      images: initialData?.images ?? [],
     },
   });
 
-  const onSubmit = (data: any) => {
-    console.log("Mock product saved:", data);
-    // TODO: Supabase query (insert / update)
-    router.push("/admin/products");
-  };
+  const handleSubmit = form.handleSubmit((data) => {
+    const fd = new FormData();
+    if (initialData?.id) fd.append('id', initialData.id);
+    fd.append('name', data.name);
+    fd.append('slug', data.slug);
+    fd.append('description', data.description);
+    fd.append('price', String(data.price));
+    fd.append('stock_quantity', String(data.stock_quantity));
+    fd.append('category_id', data.category_id);
+    fd.append('is_active', String(data.is_active));
+    fd.append('is_featured', String(data.is_featured));
+    fd.append('images', JSON.stringify(data.images));
+    formAction(fd);
+  });
+
+  const isSubmitDisabled = isPending || isUploading;
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-8">
+        {state?.error && (
+          <div className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+            {state.error}
+          </div>
+        )}
+
         <div className="grid gap-6 md:grid-cols-2">
           {/* Név */}
           <FormField
@@ -178,7 +201,11 @@ export function ProductForm({ initialData }: ProductFormProps) {
             <FormItem>
               <FormLabel>Termékképek <span className="text-destructive ml-1">*</span></FormLabel>
               <FormControl>
-                <ImageUploader images={field.value} onChange={field.onChange} />
+                <ImageUploader
+                  images={field.value}
+                  onChange={field.onChange}
+                  onUploadingChange={setIsUploading}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -221,8 +248,24 @@ export function ProductForm({ initialData }: ProductFormProps) {
         </div>
 
         <div className="flex justify-end gap-4">
-          <Button type="button" variant="outline" onClick={() => router.back()}>Mégse</Button>
-          <Button type="submit">Mentés</Button>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.back()}
+            disabled={isSubmitDisabled}
+          >
+            Mégse
+          </Button>
+          <Button type="submit" disabled={isSubmitDisabled}>
+            {isPending ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Mentés...
+              </>
+            ) : (
+              "Mentés"
+            )}
+          </Button>
         </div>
       </form>
     </Form>

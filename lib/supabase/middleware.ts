@@ -1,12 +1,13 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import type { Database } from '@/lib/database.types'
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   })
 
-  const supabase = createServerClient(
+  const supabase = createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -37,9 +38,44 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // For now, we only refresh the session without redirecting.
-  // Protected route redirects will be added in Phase 4.
-  // This ensures public pages (/, /products, etc.) work without auth.
+  const { pathname } = request.nextUrl
+
+  // Protect /checkout and /account (and sub-paths)
+  const isProtectedRoute =
+    pathname.startsWith('/checkout') || pathname.startsWith('/account')
+
+  if (isProtectedRoute && !user) {
+    const loginUrl = request.nextUrl.clone()
+    loginUrl.pathname = '/login'
+    loginUrl.searchParams.set('redirect', pathname)
+    return NextResponse.redirect(loginUrl)
+  }
+
+  // Protect /admin (and sub-paths)
+  if (pathname.startsWith('/admin')) {
+    if (!user) {
+      const loginUrl = request.nextUrl.clone()
+      loginUrl.pathname = '/login'
+      loginUrl.searchParams.set('redirect', '/admin')
+      return NextResponse.redirect(loginUrl)
+    }
+
+    // Check admin role from public.users table
+    const { data: publicUserData } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', user.id)
+      .single()
+
+    const publicUser = publicUserData as { role: string } | null
+
+    if (!publicUser || publicUser.role !== 'admin') {
+      const homeUrl = request.nextUrl.clone()
+      homeUrl.pathname = '/'
+      homeUrl.search = ''
+      return NextResponse.redirect(homeUrl)
+    }
+  }
 
   return supabaseResponse
 }

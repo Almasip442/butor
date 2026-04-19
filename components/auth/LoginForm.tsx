@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -19,6 +19,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { createClient } from "@/lib/supabase/client"
 
 const loginSchema = z.object({
   email: z.string().email("Érvénytelen e-mail cím"),
@@ -27,9 +29,13 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>
 
-export function LoginForm() {
+function LoginFormInner() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const redirectTo = searchParams.get('redirect') ?? '/'
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -39,25 +45,37 @@ export function LoginForm() {
     },
   })
 
-  function onSubmit(data: LoginFormValues) {
+  async function onSubmit(data: LoginFormValues) {
     setIsLoading(true)
+    setError(null)
 
-    // TODO: Supabase signIn
-    console.log("Login data:", data)
+    const supabase = createClient()
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    })
 
-    setTimeout(() => {
+    if (signInError) {
+      setError(signInError.message)
       setIsLoading(false)
-      router.push("/")
-    }, 1500)
+      return
+    }
+
+    router.refresh()
+    router.push(redirectTo)
   }
 
-  function handleGoogleLogin() {
+  async function handleGoogleLogin() {
     setIsLoading(true)
-    // TODO: Supabase Google OAuth signIn
-    console.log("Google login clicked")
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
+    setError(null)
+
+    const supabase = createClient()
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    })
   }
 
   return (
@@ -70,6 +88,12 @@ export function LoginForm() {
           Lépj be a fiókodba a vásárlás folytatásához
         </p>
       </div>
+
+      {error && (
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -104,7 +128,7 @@ export function LoginForm() {
                     Jelszó
                   </FormLabel>
                   <Link
-                    href="#"
+                    href="/forgot-password"
                     className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                   >
                     Elfelejtett jelszó?
@@ -171,5 +195,13 @@ export function LoginForm() {
         </Link>
       </div>
     </div>
+  )
+}
+
+export function LoginForm() {
+  return (
+    <Suspense>
+      <LoginFormInner />
+    </Suspense>
   )
 }

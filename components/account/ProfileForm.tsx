@@ -1,10 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { MOCK_USER } from "@/lib/mock-data"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
@@ -18,10 +17,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { updateProfile } from "@/app/account/actions"
 
 const profileSchema = z.object({
-  full_name: z.string().min(2, "Teljes név megadása kötelező"),
-  email: z.string().email("Érvénytelen e-mail cím"),
+  full_name: z.string().min(2, "Teljes név megadása kötelező (min. 2 karakter)"),
   phone: z.string().min(6, "Telefonszám megadása kötelező").or(z.literal("")),
   zip_code: z.string().min(4, "Irányítószám megadása kötelező").or(z.literal("")),
   city: z.string().min(2, "Város megadása kötelező").or(z.literal("")),
@@ -31,40 +30,73 @@ const profileSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileSchema>
 
-export function ProfileForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+interface InitialProfile {
+  full_name?: string | null
+  email?: string | null
+  phone?: string | null
+  shipping_address?: string | null
+}
+
+interface ProfileFormProps {
+  initialProfile?: InitialProfile | null
+}
+
+function parseShippingAddress(raw: string | null | undefined) {
+  if (!raw) return { zip_code: "", city: "", address: "", country: "Magyarország" }
+  try {
+    const parsed = JSON.parse(raw)
+    return {
+      zip_code: parsed?.zip_code ?? "",
+      city: parsed?.city ?? "",
+      address: parsed?.address ?? "",
+      country: parsed?.country ?? "Magyarország",
+    }
+  } catch {
+    return { zip_code: "", city: "", address: "", country: "Magyarország" }
+  }
+}
+
+export function ProfileForm({ initialProfile }: ProfileFormProps = {}) {
+  const [isPending, startTransition] = useTransition()
+  const shipping = parseShippingAddress(initialProfile?.shipping_address)
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      full_name: MOCK_USER.full_name,
-      email: MOCK_USER.email,
-      phone: "+36 30 123 4567", // Mocking a default since MOCK_USER doesn't strictly have phone at the root
-      zip_code: MOCK_USER.shipping_address?.zip_code || "",
-      city: MOCK_USER.shipping_address?.city || "",
-      address: MOCK_USER.shipping_address?.address || "",
-      country: MOCK_USER.shipping_address?.country || "Magyarország",
+      full_name: initialProfile?.full_name ?? "",
+      phone: initialProfile?.phone ?? "",
+      zip_code: shipping.zip_code,
+      city: shipping.city,
+      address: shipping.address,
+      country: shipping.country,
     },
   })
 
   function onSubmit(data: ProfileFormValues) {
-    setIsSubmitting(true)
-    
-    // Simulate network request
-    setTimeout(() => {
-      // TODO: Supabase update
-      console.log("Profile updated:", data)
-      toast.success("Profil sikeresen frissítve", {
-        description: "A személyes adataidat és a szállítási címet mentettük.",
-      })
-      setIsSubmitting(false)
-    }, 1000)
+    const fd = new FormData()
+    fd.append('full_name', data.full_name)
+    fd.append('phone', data.phone)
+    fd.append('zip_code', data.zip_code)
+    fd.append('city', data.city)
+    fd.append('address', data.address)
+    fd.append('country', data.country)
+
+    startTransition(async () => {
+      const result = await updateProfile(fd)
+      if (result.success) {
+        toast.success("Profil sikeresen frissítve", {
+          description: "A személyes adataidat és a szállítási címet mentettük.",
+        })
+      } else {
+        toast.error(result.error ?? "Hiba a mentés során")
+      }
+    })
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 animate-in fade-in duration-500">
-        
+
         {/* Személyes adatok szekció */}
         <div className="space-y-5 bg-background border border-border/60 p-6 sm:p-8 rounded-2xl shadow-sm">
           <h2 className="text-xl font-semibold font-display tracking-tight text-foreground uppercase border-b border-border/40 pb-4">
@@ -86,19 +118,16 @@ export function ProfileForm() {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-muted-foreground uppercase tracking-widest text-[10px] font-bold">E-mail cím</FormLabel>
-                  <FormControl>
-                    <Input disabled readOnly className="h-11 bg-muted/30 text-muted-foreground cursor-not-allowed" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <FormItem>
+              <FormLabel className="text-muted-foreground uppercase tracking-widest text-[10px] font-bold">E-mail cím</FormLabel>
+              <Input
+                disabled
+                readOnly
+                value={initialProfile?.email ?? ""}
+                className="h-11 bg-muted/30 text-muted-foreground cursor-not-allowed"
+                aria-label="E-mail cím (nem módosítható)"
+              />
+            </FormItem>
           </div>
 
           <FormField
@@ -185,12 +214,12 @@ export function ProfileForm() {
         </div>
 
         <div className="flex justify-end">
-          <Button 
-            type="submit" 
-            disabled={isSubmitting} 
+          <Button
+            type="submit"
+            disabled={isPending}
             className="w-full sm:w-auto h-12 px-8 text-sm uppercase tracking-widest font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:-translate-y-0.5 transition-all touch-target"
           >
-            {isSubmitting ? (
+            {isPending ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                 Mentés...

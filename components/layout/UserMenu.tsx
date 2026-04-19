@@ -1,5 +1,11 @@
 "use client"
 
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import type { User } from "@supabase/supabase-js"
+import Link from "next/link"
+import { User as UserIcon, Package, LogOut, Settings } from "lucide-react"
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,26 +15,64 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { User, Package, LogOut, Settings } from "lucide-react"
-import Link from "next/link"
-import { MOCK_USER } from "@/lib/mock-data"
+import { Button } from "@/components/ui/button"
+import { createClient } from "@/lib/supabase/client"
 
-export function UserMenu() {
-  const user = MOCK_USER
+function getDisplayName(user: User): string {
+  return user.user_metadata?.full_name ?? user.email ?? 'Felhasználó'
+}
 
-  // Inicialék generálása
-  const initials = user.full_name
+function getInitials(displayName: string): string {
+  return displayName
     .split(" ")
     .map((n) => n[0])
     .join("")
     .toUpperCase()
     .slice(0, 2)
+}
+
+export function UserMenu() {
+  const router = useRouter()
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    const supabase = createClient()
+
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user)
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [])
+
+  async function handleSignOut() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    router.refresh()
+  }
+
+  if (!user) {
+    return (
+      <Button asChild variant="ghost" size="sm" className="font-medium">
+        <Link href="/login">Bejelentkezés</Link>
+      </Button>
+    )
+  }
+
+  const displayName = getDisplayName(user)
+  const initials = getInitials(displayName)
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          aria-label={`Felhasználói menü – ${user.full_name}`}
+          aria-label={`Felhasználói menü – ${displayName}`}
           className="touch-target inline-flex items-center gap-2 justify-center rounded-full md:rounded-md md:px-2 md:py-1 text-foreground hover:bg-muted/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           <Avatar className="h-8 w-8 md:h-7 md:w-7">
@@ -45,7 +89,7 @@ export function UserMenu() {
       <DropdownMenuContent align="end" className="w-52">
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col gap-0.5">
-            <p className="text-sm font-semibold text-foreground">{user.full_name}</p>
+            <p className="text-sm font-semibold text-foreground">{displayName}</p>
             <p className="text-xs text-muted-foreground truncate">{user.email}</p>
           </div>
         </DropdownMenuLabel>
@@ -54,7 +98,7 @@ export function UserMenu() {
 
         <DropdownMenuItem asChild>
           <Link href="/account" className="flex items-center gap-2 cursor-pointer">
-            <User className="h-4 w-4" />
+            <UserIcon className="h-4 w-4" />
             <span>Profilom</span>
           </Link>
         </DropdownMenuItem>
@@ -75,8 +119,10 @@ export function UserMenu() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem className="flex items-center gap-2 text-destructive focus:text-destructive cursor-pointer">
-          {/* TODO: Supabase signOut */}
+        <DropdownMenuItem
+          className="flex items-center gap-2 text-destructive focus:text-destructive cursor-pointer"
+          onClick={handleSignOut}
+        >
           <LogOut className="h-4 w-4" />
           <span>Kijelentkezés</span>
         </DropdownMenuItem>

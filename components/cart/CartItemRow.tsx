@@ -40,7 +40,7 @@ export function CartItemRow({ item, isDrawer = false }: CartItemRowProps) {
           isDrawer ? "h-20 w-20" : "w-16 h-16 sm:w-24 sm:h-24"
         }`}>
           <Image
-            src={product.images[0]}
+            src={product.images?.[0] ?? '/placeholder.svg'}
             alt={product.name}
             fill
             className="object-cover transition-transform group-hover:scale-105"

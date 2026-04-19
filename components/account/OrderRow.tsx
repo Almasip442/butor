@@ -1,16 +1,24 @@
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
-import { Order } from "@/lib/types"
+import { OrderStatus } from "@/lib/types"
 
-const statusMap: Record<Order["status"], { label: string; colorClass: string }> = {
+interface OrderSummary {
+  id: string
+  status: OrderStatus
+  total_amount: number
+  created_at: string
+}
+
+const statusMap: Record<OrderStatus, { label: string; colorClass: string }> = {
   pending: { label: "Függőben", colorClass: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20" },
+  confirmed: { label: "Visszaigazolva", colorClass: "bg-teal-500/10 text-teal-600 border-teal-500/20" },
   processing: { label: "Feldolgozás alatt", colorClass: "bg-blue-500/10 text-blue-600 border-blue-500/20" },
   shipped: { label: "Kiszállítva", colorClass: "bg-purple-500/10 text-purple-600 border-purple-500/20" },
   delivered: { label: "Kézbesítve", colorClass: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" },
   cancelled: { label: "Törölve", colorClass: "bg-red-500/10 text-red-600 border-red-500/20" },
 }
 
-export function OrderRow({ order }: { order: Order }) {
+export function OrderRow({ order }: { order: OrderSummary }) {
   const statusMeta = statusMap[order.status] || { label: order.status, colorClass: "bg-muted text-muted-foreground" }
   
   return (

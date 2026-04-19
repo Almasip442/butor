@@ -1,0 +1,1 @@
+- [FurnSpace Project Context](project_furnspace.md) — stack, Supabase URL, test infra, route map, mock-data sentinel values, Iteration 3 test data requirements
